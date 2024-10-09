@@ -1,0 +1,116 @@
+\section{Rosa Warm-Up \punkte{5}}
+
+\begin{question} \label{q:1-1}
+What is the module system and how do you use it?
+\end{question}
+The module system allows the user to switch between different versions of pre-installed programs and libraries.
+Each module comes with its own bundle of programs and libraries, which can be loaded using the \texttt{module} command as follows:
+\begin{lstlisting}[language=bash]
+module load [module-name]
+\end{lstlisting}
+Internally the \texttt{module} command interprets pre-configured \texttt{modulefiles}, which typically instruct the \texttt{module} command to adjust or set shell environment variables such as \texttt{PATH}, \texttt{MANPATH}, etc, giving the user an easy way to access and switch between different compilers, loader, libraries and utilities.\newline
+In order to discover, which modules are available on the current system, simply run the following command. \cite{noauthor_compute_nodate, noauthor_module1_nodate}
+\begin{lstlisting}[language=bash]
+module avail
+\end{lstlisting}
+Further details about a specific module can be displayed by using the following command.
+\begin{lstlisting}[language=bash]
+module show [module-name]
+\end{lstlisting}
+Additionally the following commands can be used to manipulate the current set of loaded modules.
+\begin{lstlisting}[language=bash]
+module list [module-name] # lists all currently loaded modules
+module switch [module-name] # Switches loaded module1 with module2.
+module rm [module-name] # unloads module
+module purge  # unloads all modules
+\end{lstlisting} 
+
+
+
+\begin{question} \label{q:1-2}
+What is Slurm and its intended function?
+\end{question}
+The Simple Linux Utility for Resource Management (Slurm) is a cluster management and job scheduling system with the intend to be fault-tolerant and highly scalable. It is widely used on supercomputers in order to simplify the job execution of parallel jobs by hiding several complexities, including load management, job scheduling etc. Slurm comes with three core functionalities:
+\begin{enumerate}
+	\item Allocation of access to resources to users.
+	\item Framework for starting, executing and monitoring of jobs.
+	\item Arbitration of contended resources.
+\end{enumerate}
+Slurm is aware of all the available computing resources of the system, which includes number of cores and nodes, memory of each core, sockets, number of GPUs and number of hyperthreads. After successfully submitting a job, Slurm will place the job in a queue based on the requested resources and priorities. If the resources become available, the job will be executed according to the scheduling policy and can then be monitored using various Slurm utilities.\cite{noauthor_compute_nodate, noauthor_slurm_nodate} 
+
+\begin{question} \label{q:1-3}
+Write a simple “Hello World” C/C++ program which prints the host name of the machine on which the program
+is running.
+\end{question}
+The program prints the environment variable \texttt{HOSTNAME} of the node it is running on.
+\begin{lstlisting}[language=C++, caption=Hello World]
+#include <cstdlib>
+#include <iostream>
+
+int main() {
+
+  const char *hostname = std::getenv("HOSTNAME");
+
+  if (hostname) {
+    std::cout << "This program is running on " << hostname << "." << std::endl;
+  } else {
+    std::cout
+        << "Environment variable for HOSTNAME was not found on your maschine."
+        << std::endl;
+  }
+
+  return 0;
+}
+\end{lstlisting}
+
+\begin{question}  \label{q:1-4}
+Write a batch script which runs your program on one node. The batch script should be able to target nodes with specific CPUs with different memories. You can obtain the information on available nodes using the command sinfo. 
+\end{question}
+In order to figure out which specific features are available on the Rosa cluster, after consulting the manual for \texttt{sinfo} \cite{noauthor_slurm_nodate-1} one can run the following command.
+\begin{lstlisting}[language=bash, label=lst:sinfo, caption=Detecting features on Rosa] 
+# Command
+sinfo -o "%N %f"
+# Output
+NODELIST AVAIL_FEATURES
+icsnode[01-39,41-42] (null)
+\end{lstlisting}
+Here \texttt{-o} specifies the output format and \texttt{\%N \%f} specifies the output format to be a string and display the list of nodes and the list of features associate to it. Unfortunatly this cluster does not have any features, as seen by the output of listing \ref{lst:sinfo} therefore the \texttt{--constraint} option cannot be applied. The batch file is given in Listing \ref{lst:one-node}, notice that the \texttt{--nodes} and the \texttt{--ntask} are set to one.
+
+\begin{lstlisting}[language=bash, caption=single node sbatch script, label=lst:one-node]
+#!/bin/bash
+#SBATCH --job-name=slurm_job_one      # Job name    (default: sbatch)
+#SBATCH --output=slurm_job_one-%j.out # Output file (default: slurm-%j.out)
+#SBATCH --error=slurm_job_one-%j.err  # Error file  (default: slurm-%j.out)
+#SBATCH --nodes=1                     # Number of nodes
+#SBATCH --ntasks=1                    # Number of tasks
+#SBATCH --cpus-per-task=1             # Number of CPUs per task
+#SBATCH --time=00:01:00               # Wall clock time limit
+
+# load some modules & list loaded modules
+module load gcc
+module list
+
+# print CPU model
+lscpu | grep "Model name"
+
+# run (srun: run job on cluster with provided resources/allocation)
+srun ./hello_world
+\end{lstlisting}
+\begin{question}
+	Write another batch script which runs your program on two nodes.
+\end{question}
+In comparison to the previous script the important changes are that \texttt{--ntasks} and \texttt{--nodes} are now set to two. Resulting in the hello\_world program being run twice.
+Depending on the load on Rosa both instances of the program can be executed either on two separate nodes or on the same node. When I ran this sbatch script I encounter the latter scenario.
+
+\begin{lstlisting}[language=bash, caption=two nodes and tasks sbatch script]
+#!/bin/bash
+#SBATCH --job-name=slurm_job_two      # Job name    (default: sbatch)
+#SBATCH --output=slurm_job_two-%j.out # Output file (default: slurm-%j.out)
+#SBATCH --error=slurm_job_two-%j.err  # Error file  (default: slurm-%j.out)
+#SBATCH --nodes=2                     # Number of nodes
+#SBATCH --ntasks=2                    # Number of tasks
+#SBATCH --cpus-per-task=1             # Number of CPUs per task
+#SBATCH --time=00:01:00               # Wall clock time limit
+
+srun ./hello_world
+\end{lstlisting}

@@ -1,0 +1,63 @@
+\documentclass[unicode,11pt,a4paper,oneside,numbers=endperiod,openany]{scrartcl}
+
+\input{style/assignment.sty}
+\usepackage{ntheorem}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[
+	backend=biber,
+]{biblatex}
+\addbibresource{bib/sources.bib}
+\theoremstyle{plain}
+\theorembodyfont{\upshape} % or "\itshape", or whatever
+\newtheorem{question}{Question}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{codeblue}{rgb}{0.251, 0.471, 0.753}
+\definecolor{backcolour}{rgb}{0.961, 0.961, 0.961}
+
+\lstdefinestyle{mystyle}{%
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{Fuchsia}\textit,
+    keywordstyle=\color{NavyBlue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{Green},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+}
+
+
+\lstset{style=mystyle}
+
+\begin{document}
+
+\setassignment
+
+\serieheader{High-Performance Computing Lab}{Institute of Computing}{Student: Dennys Mike Huber}{Discussed with: Alberto Finardi \& Leon Ackermann}{Solution for Project 1}{}
+\newline
+In this project you will practice memory access optimization, performance-oriented programming, and OpenMP parallelizaton on the Rosa Cluster.
+
+\input{sections/ex01.tex}
+\newpage
+\input{sections/ex02.tex}
+\newpage
+\input{sections/ex03.tex}
+\newpage
+
+\printbibliography[heading=bibintoc]
+\newpage
+\end{document}

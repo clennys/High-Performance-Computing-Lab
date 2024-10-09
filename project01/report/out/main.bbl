@@ -1,0 +1,227 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{noauthor_compute_nodate}{misc}{}
+      \list{language}{1}{%
+        {en-US}%
+      }
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labeltitlesource}{title}
+      \field{title}{Compute {Resources} – {Institute} of {Computing} {USI}}
+      \field{urlday}{5}
+      \field{urlmonth}{10}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:/Users/dennyshuber/Zotero/storage/RWEM3JVR/resources.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.ci.inf.usi.ch/research/resources/
+      \endverb
+      \verb{url}
+      \verb https://www.ci.inf.usi.ch/research/resources/
+      \endverb
+    \endentry
+    \entry{noauthor_floatingpointmath_nodate}{misc}{}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labeltitlesource}{title}
+      \field{title}{{FloatingPointMath} - {GCC} {Wiki}}
+      \field{urlday}{7}
+      \field{urlmonth}{10}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb FloatingPointMath - GCC Wiki:/Users/dennyshuber/Zotero/storage/NV2YXE4U/FloatingPointMath.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://gcc.gnu.org/wiki/FloatingPointMath
+      \endverb
+      \verb{url}
+      \verb https://gcc.gnu.org/wiki/FloatingPointMath
+      \endverb
+    \endentry
+    \entry{noauthor_intel_nodate-1}{misc}{}
+      \list{language}{1}{%
+        {en}%
+      }
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Intel® Intrinsics Guide includes C-style functions that provide access to other instructions without writing assembly code.}
+      \field{journaltitle}{Intel}
+      \field{title}{Intel® {Intrinsics} {Guide}}
+      \field{urlday}{9}
+      \field{urlmonth}{10}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:/Users/dennyshuber/Zotero/storage/TTJKNU35/index.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html
+      \endverb
+      \verb{url}
+      \verb https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html
+      \endverb
+    \endentry
+    \entry{noauthor_intel_nodate}{misc}{}
+      \list{language}{1}{%
+        {en}%
+      }
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Intel® Xeon® Processor E5-2650 v3 (25M Cache, 2.30 GHz) quick reference guide including specifications, features, pricing, compatibility, design documentation, ordering codes, spec codes and more.}
+      \field{title}{Intel® {Xeon}® {Processor} {E5}-2650 v3 ({25M} {Cache}, 2.30 {GHz}) {Product} {Specifications}}
+      \field{urlday}{29}
+      \field{urlmonth}{9}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:/Users/dennyshuber/Zotero/storage/WIYFU9DQ/intel-xeon-processor-e5-2650-v3-25m-cache-2-30-ghz.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.intel.com/content/www/us/en/products/sku/81705/intel-xeon-processor-e5-2650-v3-25m-cache-2-30-ghz.html
+      \endverb
+      \verb{url}
+      \verb https://www.intel.com/content/www/us/en/products/sku/81705/intel-xeon-processor-e5-2650-v3-25m-cache-2-30-ghz.html
+      \endverb
+    \endentry
+    \entry{noauthor_loop-specific_nodate}{misc}{}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labeltitlesource}{title}
+      \field{title}{Loop-{Specific} {Pragmas} - {Using} the {GNU} {Compiler} {Collection} ({GCC})}
+      \field{urlday}{8}
+      \field{urlmonth}{10}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Loop-Specific Pragmas - Using the GNU Compiler Collection (GCC):/Users/dennyshuber/Zotero/storage/58H42PUI/Loop-Specific-Pragmas.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://gcc.gnu.org/onlinedocs/gcc-4.9.0/gcc/Loop-Specific-Pragmas.html
+      \endverb
+      \verb{url}
+      \verb https://gcc.gnu.org/onlinedocs/gcc-4.9.0/gcc/Loop-Specific-Pragmas.html
+      \endverb
+    \endentry
+    \entry{noauthor_memory_nodate}{misc}{}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labeltitlesource}{title}
+      \field{title}{{MEMORY} {BANDWIDTH}: {STREAM} {BENCHMARK} {PERFORMANCE} {RESULTS}}
+      \field{urlday}{8}
+      \field{urlmonth}{10}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb MEMORY BANDWIDTH\: STREAM BENCHMARK PERFORMANCE RESULTS:/Users/dennyshuber/Zotero/storage/ZNPK887V/stream.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.cs.virginia.edu/stream/
+      \endverb
+      \verb{url}
+      \verb https://www.cs.virginia.edu/stream/
+      \endverb
+    \endentry
+    \entry{noauthor_module1_nodate}{misc}{}
+      \field{sortinit}{m}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labeltitlesource}{title}
+      \field{title}{module(1): command interface to {Modules} package - {Linux} man page}
+      \field{urlday}{5}
+      \field{urlmonth}{10}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb module(1)\: command interface to Modules package - Linux man page:/Users/dennyshuber/Zotero/storage/5ETEBE9G/module.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://linux.die.net/man/1/module
+      \endverb
+      \verb{url}
+      \verb https://linux.die.net/man/1/module
+      \endverb
+    \endentry
+    \entry{noauthor_slurm_nodate}{misc}{}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labeltitlesource}{title}
+      \field{title}{Slurm {Workload} {Manager} - {Overview}}
+      \field{urlday}{5}
+      \field{urlmonth}{10}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Slurm Workload Manager - Overview:/Users/dennyshuber/Zotero/storage/QXPHDT42/overview.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://slurm.schedmd.com/overview.html
+      \endverb
+      \verb{url}
+      \verb https://slurm.schedmd.com/overview.html
+      \endverb
+    \endentry
+    \entry{noauthor_slurm_nodate-1}{misc}{}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labeltitlesource}{title}
+      \field{title}{Slurm {Workload} {Manager} - sinfo}
+      \field{urlday}{9}
+      \field{urlmonth}{10}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Slurm Workload Manager - sinfo:/Users/dennyshuber/Zotero/storage/VA4GKTCB/sinfo.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://slurm.schedmd.com/sinfo.html
+      \endverb
+      \verb{url}
+      \verb https://slurm.schedmd.com/sinfo.html
+      \endverb
+    \endentry
+    \entry{noauthor_uopsinfo_nodate}{misc}{}
+      \field{sortinit}{u}
+      \field{sortinithash}{6901a00e45705986ee5e7ca9fd39adca}
+      \field{labeltitlesource}{title}
+      \field{title}{uops.info - {Table}}
+      \field{urlday}{29}
+      \field{urlmonth}{9}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb uops.info - Table:/Users/dennyshuber/Zotero/storage/AMXCWCHE/table.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://uops.info/table.html
+      \endverb
+      \verb{url}
+      \verb https://uops.info/table.html
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
