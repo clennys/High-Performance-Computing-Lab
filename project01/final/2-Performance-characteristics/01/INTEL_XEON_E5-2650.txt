@@ -4,6 +4,6 @@ P_{core} = 2 x 2 x 4 x 2.30 GHz = 36.8 GFlops/s
 P_{CPU}  = 10 x P_{core}        = 368 GFlops/s
 P_{node} = 368 x P_{CPU}        = 736 GFlops/s
 P_{Rosa} = 736 x P_{node}       = 30912 GFlops/s
-                                = 20.912 TFlops/s
+                                = 30.912 TFlops/s
 
 

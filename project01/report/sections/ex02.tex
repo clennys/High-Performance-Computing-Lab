@@ -66,14 +66,7 @@ For single core the memory hierarchy is summarized in Table \ref{tab:cache}.
 \end{table}
 
 \subsection{Bandwidth: STREAM Benchmark}
-After illustrating the topology of single node, we are now interested in the speed of the memory system. This speed is measured in terms of bandwidth, indicating the how much data can be transfer within a specific time period. The STREAM is a common benchmark to assess the bandwidth. It uses four operations: Copy, Scale, Add and Triad to evaluate the bandwidth and the rate of computing. In order to properly setup benchmark we need to compute the number of element, which is, according to instructions given on the STREAM benchmark website \cite{noauthor_memory_nodate}, four times the sum of all last-level cache. This results in the following array size $n_{\text{arr}}$:
-\begin{equation}
-	\begin{aligned}
-		n_{\text{arr}} & = 4 \times n_{\text{cores}} \times \text{L1 cache} \\
-		               & = 4 \times 10 \times 32 \ \text{KB} \times 1000    \\
-		               & = 1'280'000
-	\end{aligned}
-\end{equation}
+After illustrating the topology of single node, we are now interested in the speed of the memory system. This speed is measured in terms of bandwidth, indicating the how much data can be transfer within a specific time period. The STREAM is a common benchmark to assess the bandwidth. It uses four operations: Copy, Scale, Add and Triad to evaluate the bandwidth and the rate of computing. In order to properly setup benchmark we need to compute the number of element, which is, according to instructions given on the STREAM benchmark website \cite{noauthor_memory_nodate}, four times the sum of all last-level cache. Because we have the same CPU as the login-node and therefore the same L3 cache size, we can take the same arraysize as in the exercise, which is $128 \times 10^6$ elements.
 \begin{lstlisting}[language=bash, caption=Output of STREAM benchmark]
 -------------------------------------------------------------
 Function    Best Rate MB/s  Avg time     Min time     Max time
