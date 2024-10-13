@@ -1,7 +1,9 @@
+CPP     = g++
+CPPFLAGS  = -O3 \
+			-fopenmp
 all: pi
 
 pi: pi.cpp
-	g++ -O3 -fopenmp $< -o $@
-
+	$(CPP) $(CPPFLAGS) $^ -o $@.exe
 clean:
 	rm -rf pi

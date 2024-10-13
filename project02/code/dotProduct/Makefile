@@ -1,7 +1,11 @@
+CPP     = g++
+CPPFLAGS  = -O3 \
+			-fopenmp
+
 all: dotProduct
 
 dotProduct: dotProduct.cpp walltime.h
-	g++ -O3 -fopenmp $< -o $@
+	$(CPP) $(CPPFLAGS) $^ -o $@.exe
 
 clean:
 	rm -rf dotProduct

@@ -1,8 +1,8 @@
+#include "walltime.h"
 #include <iostream>
 #include <omp.h>
 #include <random>
 #include <vector>
-#include "walltime.h"
 
 #define VEC_SIZE 1000000000
 #define BINS 16
@@ -23,8 +23,10 @@ int main() {
   std::vector<int> vec(VEC_SIZE);
   for (long i = 0; i < VEC_SIZE; ++i) {
     vec[i] = int(distribution(generator));
-    if (vec[i] < 0       ) vec[i] = 0;
-    if (vec[i] > BINS - 1) vec[i] = BINS - 1;
+    if (vec[i] < 0)
+      vec[i] = 0;
+    if (vec[i] > BINS - 1)
+      vec[i] = BINS - 1;
   }
 
   // Initialize histogram: Set all bins to zero
@@ -34,10 +36,38 @@ int main() {
   }
 
   // TODO Parallelize the histogram computation
+  // False Sharing -> performance degradation, when multiple processes modifying
+  // data contained in the same cache line
+	// Cache line size 
+	// getconf LEVEL1_DCACHE_LINESIZE -> 64 bytes
+	// long and int have 4 Bytes
+	// per cache line  64/4 = 16 Bytes
   time_start = walltime();
+
+#pragma omp parallel for reduction(+ : dist[ : BINS])
   for (long i = 0; i < VEC_SIZE; ++i) {
     dist[vec[i]]++;
   }
+
+
+  // #pragma omp parallel
+  //   {
+  //
+  //     int n_threads = omp_get_num_threads();
+  //     int i_thread = omp_get_thread_num();
+  //
+  // #pragma omp single
+  //     long private_dist[BINS * n_threads];
+  //
+  // #pragma omp for
+  //     for (unsigned int i = 0; i < VEC_SIZE; ++i) {
+  //       dist[vec[i] + i_thread * n_threads]++;
+  //     }
+  // #pragma omp for
+  //     for (unsigned int i = 0; i < vec.size(); i++) {
+  //
+  //     }
+  //   }
   time_end = walltime();
 
   // Write results

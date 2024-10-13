@@ -5,6 +5,8 @@
 #include "pngwriter.h"
 #include "walltime.h"
 
+
+
 int main(int argc, char **argv) {
   png_data *pPng = png_create(IMAGE_WIDTH, IMAGE_HEIGHT);
 
@@ -31,8 +33,22 @@ int main(int argc, char **argv) {
       // count the iterations until the orbit leaves the circle |z|=2.
       // stop if the number of iterations exceeds the bound MAX_ITERS.
       int n = 0;
-      // TODO
+      // TODO:
       // >>>>>>>> CODE IS MISSING
+
+			// |c| = sqrt(x^2 + y^2) < 2
+			// Square |c| < 2 -> no sqrt need
+			while(x2 + y2 < 4 && n < MAX_ITERS){
+				// z1*z2 = (x1x2 - y1y2) + i(x1y2 + x2y1)
+				// z^2 = (xx - yy) + i(xy + xy)
+				// z^2 + c = (xx - yy + cx) + i(xy + xy + cy)
+				// x = x^2 - y^2 + cx
+				// y = 2xy + cy
+				y = 2 * x * y + cy;
+				x = x2 - y2 + cx;
+				n++;
+				nTotalIterationsCount++;
+			}
 
       // <<<<<<<< CODE IS MISSING
       // n indicates if the point belongs to the mandelbrot set
