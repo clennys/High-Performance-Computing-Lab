@@ -1,6 +1,7 @@
-CC      ?= gcc
-CFLAGS  = -O3 -I$(CPATH)
-LDFLAGS = -O3 -L$(LIBRARY_PATH)
+CC      = gcc-14
+# CC      ?= gcc
+CFLAGS  = -O3 -I$(CPATH) -fopenmp
+LDFLAGS = -O3 -L$(LIBRARY_PATH) -fopenmp
 
 all: mandel_seq
 
@@ -18,4 +19,4 @@ walltime.o: walltime.c walltime.h
 
 .PHONY: clean
 clean:
-	$(RM) *.o mandel_seq
+	$(RM) *.o mandel_seq.exe
