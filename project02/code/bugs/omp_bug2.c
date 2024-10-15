@@ -10,8 +10,8 @@ int main(int argc, char *argv[]) {
   int nthreads, i, tid;
   float total;
 
-/* Spawn parallel region */
-  #pragma omp parallel private(tid, i)
+  /* Spawn parallel region */
+#pragma omp parallel private(tid, i)
   {
     /* Obtain thread number */
     tid = omp_get_thread_num();
@@ -22,15 +22,13 @@ int main(int argc, char *argv[]) {
     }
     printf("Thread %d is starting...\n", tid);
 
-		
 #pragma omp barrier
 
     /* do some work */
     total = 0.0;
-    #pragma omp for schedule(dynamic, 10) firstprivate(total) lastprivate(total)
+#pragma omp for schedule(dynamic, 10) firstprivate(total) lastprivate(total)
     for (i = 0; i < 1000000; i++)
       total = total + i * 1.0;
-  printf("Thread %d is done! Total= %e\n", tid, total);
+    printf("Thread %d is done! Total= %e\n", tid, total);
   } /* End of parallel region */
-
 }
