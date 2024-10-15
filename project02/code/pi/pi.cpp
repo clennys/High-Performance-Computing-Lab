@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 int main(int argc, char *argv[]) {
-  long long int N = 10000000000; // <<< carefull! This larger than regular
+  long int N = 10000000000; // <<< carefull! This larger than regular
   // int (its a long int)
   // long int N =
   //     10000; // <<< carefull! This larger than regular int (its a long int)

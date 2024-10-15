@@ -39,15 +39,17 @@ int main(int argc, char *argv[]) {
 #pragma omp section
       {
         printf("Thread %d initializing a[]\n", tid);
+				// Unlock after used other wise you can run into deadlock
         omp_set_lock(&locka);
         for (i = 0; i < N; i++)
           a[i] = i * DELTA;
-        omp_set_lock(&lockb);
+        // omp_set_lock(&lockb);
+        omp_unset_lock(&locka);
         printf("Thread %d adding a[] to b[]\n", tid);
         for (i = 0; i < N; i++)
           b[i] += a[i];
         omp_unset_lock(&lockb);
-        omp_unset_lock(&locka);
+        // omp_unset_lock(&locka);
       }
 
 #pragma omp section
@@ -56,11 +58,12 @@ int main(int argc, char *argv[]) {
         omp_set_lock(&lockb);
         for (i = 0; i < N; i++)
           b[i] = i * PI;
-        omp_set_lock(&locka);
+        // omp_set_lock(&locka);
+        omp_unset_lock(&locka);
         printf("Thread %d adding b[] to a[]\n", tid);
         for (i = 0; i < N; i++)
           a[i] += b[i];
-        omp_unset_lock(&locka);
+        // omp_unset_lock(&locka);
         omp_unset_lock(&lockb);
       }
     } /* end of sections */

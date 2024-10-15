@@ -1,7 +1,7 @@
+#include "walltime.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "walltime.h"
 
 int main(int argc, char *argv[]) {
   int N = 2000000000;
@@ -18,9 +18,12 @@ int main(int argc, char *argv[]) {
 
   double time_start = walltime();
   // TODO: YOU NEED TO PARALLELIZE THIS LOOP
+#pragma omp parallel for firstprivate(Sn) lastprivate(Sn)
   for (n = 0; n <= N; ++n) {
+    // Cannot use an initial Sn and then just Sn *= up due to the requirement of
+    // being omp schedule independent
+    Sn = pow(up, n);
     opt[n] = Sn;
-    Sn *= up;
   }
 
   printf("Parallel RunTime  :  %f seconds\n", walltime() - time_start);

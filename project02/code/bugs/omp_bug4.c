@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define N 1048
+// TODO: ulimit -s 9000
 
 int main(int argc, char *argv[]) {
   int nthreads, tid, i, j;

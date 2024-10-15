@@ -20,10 +20,13 @@ int main(int argc, char *argv[]) {
     a[i] = b[i] = i * 1.0;
   chunk = CHUNKSIZE;
 
-  #pragma omp parallel for shared(a, b, c, chunk) private(i, tid) \
+	// This statement is wrong wee need to separate into a parallel section without the  for and schedule part.
+  // #pragma omp parallel for shared(a, b, c, chunk) private(i, tid) \
               schedule(static, chunk)
+#pragma omp parallel shared(a,b,c,chunk) private(i, tid)
   {
     tid = omp_get_thread_num();
+#pragma omp for schedule(static, chunk) 
     for (i = 0; i < N; i++) {
       c[i] = a[i] + b[i];
       printf("tid= %d i= %d c[i]= %f\n", tid, i, c[i]);
