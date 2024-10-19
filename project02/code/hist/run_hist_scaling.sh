@@ -26,5 +26,5 @@ for ((i=0; i<=7; i++))
 do
   OMP_NUM_THREADS=$((2**i))
   export OMP_NUM_THREADS
-  ./hist_omp | tee -a $STRONG_SCALING_DATA
+  ./hist_omp.exe | tee -a $STRONG_SCALING_DATA
 done

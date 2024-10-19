@@ -16,4 +16,4 @@ make clean
 make
 
 # Run
-./hist_seq
+./hist_seq.exe
