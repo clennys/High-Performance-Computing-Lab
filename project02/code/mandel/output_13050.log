@@ -1,0 +1,53 @@
+rm -f *.o mandel_seq.exe
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -c -O3 -fopenmp mandel_seq.c
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -c -O3 -fopenmp pngwriter.c
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -c -O3 -fopenmp walltime.c
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -O3 -fopenmp mandel_seq.o pngwriter.o walltime.o -lpng -o mandel_seq.exe
+OMP_NUM_THREADS = 1
+Total time:                 155.782 seconds
+Image size:                 4096 x 4096 = 16777216 Pixels
+Total number of iterations: 32337668137
+Avg. time per pixel:        9.28531e-06 seconds
+Avg. time per iteration:    4.81735e-09 seconds
+Iterations/second:          2.07583e+08
+MFlop/s:                    1660.67
+OMP_NUM_THREADS = 2
+Total time:                 78.0365 seconds
+Image size:                 4096 x 4096 = 16777216 Pixels
+Total number of iterations: 32345672629
+Avg. time per pixel:        4.65134e-06 seconds
+Avg. time per iteration:    2.41258e-09 seconds
+Iterations/second:          4.14494e+08
+MFlop/s:                    3315.96
+OMP_NUM_THREADS = 4
+Total time:                 75.3708 seconds
+Image size:                 4096 x 4096 = 16777216 Pixels
+Total number of iterations: 32345672629
+Avg. time per pixel:        4.49245e-06 seconds
+Avg. time per iteration:    2.33017e-09 seconds
+Iterations/second:          4.29154e+08
+MFlop/s:                    3433.23
+OMP_NUM_THREADS = 8
+Total time:                 50.5879 seconds
+Image size:                 4096 x 4096 = 16777216 Pixels
+Total number of iterations: 32345672629
+Avg. time per pixel:        3.01527e-06 seconds
+Avg. time per iteration:    1.56398e-09 seconds
+Iterations/second:          6.39396e+08
+MFlop/s:                    5115.16
+OMP_NUM_THREADS = 16
+Total time:                 28.6086 seconds
+Image size:                 4096 x 4096 = 16777216 Pixels
+Total number of iterations: 32345672629
+Avg. time per pixel:        1.70521e-06 seconds
+Avg. time per iteration:    8.84466e-10 seconds
+Iterations/second:          1.13063e+09
+MFlop/s:                    9045.01
+OMP_NUM_THREADS = 20
+Total time:                 23.1507 seconds
+Image size:                 4096 x 4096 = 16777216 Pixels
+Total number of iterations: 32345672629
+Avg. time per pixel:        1.37989e-06 seconds
+Avg. time per iteration:    7.15728e-10 seconds
+Iterations/second:          1.39718e+09
+MFlop/s:                    11177.4

@@ -18,6 +18,6 @@ THREADS=(1 2 4 8 16 20)
 for i in "${THREADS[@]}"; do
     export OMP_NUM_THREADS=$i
         echo "OMP_NUM_THREADS = $OMP_NUM_THREADS" 
-	./mandel.exe
+	./mandel_seq.exe
     done
 done

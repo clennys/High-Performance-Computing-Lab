@@ -1,0 +1,39 @@
+rm -f *.o recur_seq recur_omp
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -c -O3 recur_seq.c
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -c walltime.c
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -O3 recur_seq.o walltime.o -lm -o recur_seq.exe
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -O3 -fopenmp recur_omp.c walltime.o -lm -o recur_omp.exe
+Sequential RunTime:  6.732778 seconds
+Final Result Sn   :  485165097.62511122 
+Result ||opt||^2_2 :  5884629305179574.000000
+
+OMP_NUM_THREADS = 1
+Parallel RunTime  :  114.230554 seconds
+Final Result Sn   :  485165087.9217357 
+Result ||opt||^2_2 :  5884629187486874.000000
+
+OMP_NUM_THREADS = 2
+Parallel RunTime  :  57.194780 seconds
+Final Result Sn   :  485165087.9217357 
+Result ||opt||^2_2 :  5884629187486874.000000
+
+OMP_NUM_THREADS = 4
+Parallel RunTime  :  28.622965 seconds
+Final Result Sn   :  485165087.9217357 
+Result ||opt||^2_2 :  5884629187486874.000000
+
+OMP_NUM_THREADS = 8
+Parallel RunTime  :  14.333468 seconds
+Final Result Sn   :  485165087.9217357 
+Result ||opt||^2_2 :  5884629187486874.000000
+
+OMP_NUM_THREADS = 16
+Parallel RunTime  :  7.193894 seconds
+Final Result Sn   :  485165087.9217357 
+Result ||opt||^2_2 :  5884629187486874.000000
+
+OMP_NUM_THREADS = 20
+Parallel RunTime  :  5.766189 seconds
+Final Result Sn   :  485165087.9217357 
+Result ||opt||^2_2 :  5884629187486874.000000
+
