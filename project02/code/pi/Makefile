@@ -6,4 +6,4 @@ all: pi
 pi: pi.cpp
 	$(CPP) $(CPPFLAGS) $^ -o $@.exe
 clean:
-	rm -rf pi
+	rm -rf pi.exe

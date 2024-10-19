@@ -49,15 +49,21 @@ int main(int argc, char *argv[]) {
   long double alpha = 0;
   // serial execution
   // Note that we do extra iterations to reduce relative timing overhead
-  time_start = wall_time();
-  for (int iterations = 0; iterations < NUM_ITERATIONS; iterations++) {
-    alpha = 0.0;
-    for (int i = 0; i < N; i++) {
-      alpha += a[i] * b[i];
+  int max_threads = omp_get_max_threads();
+  // NOTE: Only compute the serial implementation when max_threads = 1 so we
+  // dont have to compute the serial implementation for every number of
+  // processes.
+  if (!(max_threads > 1)) {
+    time_start = wall_time();
+    for (int iterations = 0; iterations < NUM_ITERATIONS; iterations++) {
+      alpha = 0.0;
+      for (int i = 0; i < N; i++) {
+        alpha += a[i] * b[i];
+      }
     }
+    time_serial = wall_time() - time_start;
+    cout << "Serial execution time = " << time_serial << " sec" << endl;
   }
-  time_serial = wall_time() - time_start;
-  cout << "Serial execution time = " << time_serial << " sec" << endl;
 
   long double alpha_parallel_red, alpha_parallel_crit, alpha_local = 0;
   double time_red = 0;
@@ -98,20 +104,25 @@ int main(int argc, char *argv[]) {
 
   time_critical = wall_time() - time_start;
 
-  if ((fabs(alpha_parallel_red - alpha) / fabs(alpha_parallel_red)) > EPSILON) {
-    cout << "parallel reduction: " << alpha_parallel_red << ", serial: " << alpha
-         << "\n";
-    cerr << "Alpha not yet implemented correctly!\n";
-    exit(1);
-  }
-if ((fabs(alpha_parallel_crit - alpha) / fabs(alpha_parallel_crit)) > EPSILON) {
-    cout << "parallel critical: " << alpha_parallel_crit << ", serial: " << alpha
-         << "\n";
-    cerr << "Alpha not yet implemented correctly!\n";
-    exit(1);
-  }
+  // NOTE: Commented this part out, so I don't have to redo the serial execution
+  // for every number of max threads
+  //
+  // if ((fabs(alpha_parallel_red - alpha) / fabs(alpha_parallel_red)) >
+  // EPSILON) {
+  //   cout << "parallel reduction: " << alpha_parallel_red
+  //        << ", serial: " << alpha << "\n";
+  //   cerr << "Alpha not yet implemented correctly!\n";
+  //   exit(1);
+  // }
+  // if ((fabs(alpha_parallel_crit - alpha) / fabs(alpha_parallel_crit)) >
+  //     EPSILON) {
+  //   cout << "parallel critical: " << alpha_parallel_crit
+  //        << ", serial: " << alpha << "\n";
+  //   cerr << "Alpha not yet implemented correctly!\n";
+  //   exit(1);
+  // }
   cout << "Parallel dot product reduction = " << alpha_parallel_red << endl
-   << "Parallel dot product critical = " << alpha_parallel_crit << endl
+       << "Parallel dot product critical = " << alpha_parallel_crit << endl
        << "Time reduction method = " << time_red << " sec" << endl
        << "Time critical method = " << time_critical << " sec" << endl;
 

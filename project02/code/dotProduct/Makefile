@@ -8,4 +8,4 @@ dotProduct: dotProduct.cpp walltime.h
 	$(CPP) $(CPPFLAGS) $^ -o $@.exe
 
 clean:
-	rm -rf dotProduct
+	rm -rf dotProduct.exe
