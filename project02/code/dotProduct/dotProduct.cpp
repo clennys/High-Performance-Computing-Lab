@@ -53,7 +53,7 @@ int main(int argc, char *argv[]) {
   // NOTE: Only compute the serial implementation when max_threads = 1 so we
   // dont have to compute the serial implementation for every number of
   // processes.
-  if (!(max_threads > 1)) {
+  if (max_threads == 1) {
     time_start = wall_time();
     for (int iterations = 0; iterations < NUM_ITERATIONS; iterations++) {
       alpha = 0.0;
@@ -61,8 +61,10 @@ int main(int argc, char *argv[]) {
         alpha += a[i] * b[i];
       }
     }
+    cout << alpha << endl;
     time_serial = wall_time() - time_start;
-    cout << "Serial execution time = " << time_serial << " sec" << endl;
+    cout << "Serial execution time = " << time_serial << " sec" << endl
+         << "Serial dot product = " << alpha << endl;
   }
 
   long double alpha_parallel_red, alpha_parallel_crit, alpha_local = 0;
