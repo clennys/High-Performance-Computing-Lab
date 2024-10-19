@@ -3,13 +3,13 @@ CC ?= gcc
 all: recur_seq recur_omp
 
 recur_seq: recur_seq.o walltime.o
-	$(CC) -O3 $^ -lm -o $@
+	$(CC) -O3 $^ -lm -o $@.exe
 
 recur_seq.o: recur_seq.c walltime.h
 	$(CC) -c -O3 $<
 
 recur_omp: recur_omp.c walltime.o
-	$(CC) -O3 -fopenmp $^ -lm -o $@
+	$(CC) -O3 -fopenmp $^ -lm -o $@.exe
 
 recur_omp.o: recur_omp.c walltime.h
 	$(CC) -c -O3 -fopenmp $<
