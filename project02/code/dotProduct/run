@@ -2,7 +2,7 @@
 #SBATCH --job-name=dot-product			# Job name
 #SBATCH --output=output_%j.log          # Output file (with job ID)
 #SBATCH --error=error_%j.log            # Error file (with job ID)
-#SBATCH --time=00:10:00                 # Time limit hrs:min:sec
+#SBATCH --time=00:30:00                 # Time limit hrs:min:sec
 #SBATCH --ntasks=1						# Number of tasks
 #SBATCH --cpus-per-task=20				# Number of CPUs per task
 
@@ -11,5 +11,15 @@ module load gcc
 make clean
 make
 
-srun ./dotProduct.exe
+#!/bin/bash
 
+THREADS=(1 2 4 8 16 20) 
+EXP=(5 6 7 8 9)
+
+for i in "${THREADS[@]}"; do
+    export OMP_NUM_THREADS=$i
+    for j in "${EXP[@]}"; do
+        echo "OMP_NUM_THREADS = $OMP_NUM_THREADS, Array size 10^$j"
+	./dotProduct.exe $j
+    done
+done
