@@ -4,6 +4,7 @@
 #include "consts.h"
 #include "pngwriter.h"
 #include "walltime.h"
+#include "omp.h"
 
 // #define SERIAL
 
