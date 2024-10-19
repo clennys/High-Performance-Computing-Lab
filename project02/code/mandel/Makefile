@@ -1,7 +1,11 @@
-CC      = gcc-14
-# CC      ?= gcc
-CFLAGS  = -O3 -I$(CPATH) -fopenmp
-LDFLAGS = -O3 -L$(LIBRARY_PATH) -fopenmp
+# CC      = gcc-14
+CC      ?= gcc
+# CFLAGS  = -O3 -I$(CPATH) -fopenmp
+# LDFLAGS = -O3 -L$(LIBRARY_PATH) -fopenmp
+#
+CFLAGS  = -O3 -fopenmp
+LDFLAGS = -O3 -fopenmp
+
 
 all: mandel_seq
 
