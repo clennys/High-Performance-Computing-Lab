@@ -1,0 +1,80 @@
+\section{Bug Hunt}
+
+\subsection{Bug 1: Check tid}
+For the first bug the issue is the \texttt{\#pragma} statement, see Listing \ref{lst:bug1}, because it includes already the \texttt{for} and the \texttt{schedule(static, chunk)} statement, both of which can only be used right before a for-loop.
+\begin{lstlisting}[language=C++, caption=Bug in bug1.c, label=lst:bug1]
+#pragma omp parallel for shared(a, b, c, chunk) private(i, tid) \
+              schedule(static, chunk)
+	{
+		tid = omp_get_thread_num();
+		/* CODE */
+	}
+\end{lstlisting}
+In order to fix the bug, we need to split the \texttt{\#pragma} statement in two distinct ones. The first one indicating that we are in a parallel region, shown on Line 1 of Listing \ref{lst:bug1_fix} and the second \texttt{\#pragma omp for} statement on Line 4 right before the loop we want to parallelize.
+\begin{lstlisting}[language=C++, caption=Fix for bug1.c, label=lst:bug1_fix]
+#pragma omp parallel shared(a,b,c,chunk) private(i, tid)
+{
+    tid = omp_get_thread_num();
+#pragma omp for schedule(static, chunk) 
+    for (i = 0; i < N; i++) {
+      c[i] = a[i] + b[i];
+      printf("tid= %d i= %d c[i]= %f\n", tid, i, c[i]);
+    }
+}
+\end{lstlisting}
+
+\subsection{Bug 2: Check shared vs private}
+The second bug can be fixed by changing the variables \texttt{tid} and \texttt{i} to private variables.
+\begin{lstlisting}[language=C++, caption=Fix bug2.c, label=lst:bug2_fix]
+#pragma omp parallel private(tid, i)
+\end{lstlisting}
+By doing this every is now assigned its proper thread Id (\texttt{tid}) and the number of threads is now only printed by thread with index 0. Furthermore by setting \texttt{i} to private, each thread can now process its chunk of the \texttt{total}, otherwise \texttt{i} gets incremented by every thread, which could lead to certain \texttt{i} being skipped in the \texttt{total} computation.
+
+\subsection{Bug 3: Check barrier}
+For this bug it is critical to understand what the \texttt{sections} constructs does. Consulting the documentation \cite{noauthor_ibm_2024}, sections distribute work among the threads in a parallel region.
+This means in our case one of the threads executes section 1, another section 2 and the rest are preceding to the \texttt{omp barrier} after the \texttt{omp sections nowait} region. Important to note here is that the \texttt{nowait} option is used which removes the default barrier when exciting the \texttt{sections} construct. \newline
+In addition both \texttt{omp section} call the \texttt{print\_results} function, which includes another \texttt{omp barrier} statement at the end of the function.\newline
+In OpenMP, threads cannot differentiate between different barriers in parallel region, which means that when the two threads executing the code in the section 1 and 2 reach the \texttt{omp barrier} statement in the \texttt{print\_results} function, all the other threads are continuing executing the code, because every thread reached a barrier. When the threads that executed the sections reach the barrier after the section they halt there and wait until all the other threads reach barrier, which never happens, hence the program does not halt.\newline
+\newline
+The solution to fix this bug is simply to remove the \texttt{omp barrier} statement at the end of the \texttt{print\_results} function. Then the threads not entering a section, are waiting until the other two threads are finished with their section and all the threads are exciting together.
+\subsection{Bug 4: Stacksize}
+In OpenMP there exists a stack size limit for each thread in a parallel region. 
+On Unix like systems you can run the command
+\begin{lstlisting}[language=bash, caption=Find current stacksize on Unix-like system, label=lst:ulimit]
+ulimit -a
+# Example output in KB
+8176
+\end{lstlisting}
+In our case we a $1048 \times 1048$ matrix of type double, for which every thread gets its own copy.
+This Matrix therefore requires $ 8 \cdot 1048 \cdot 1048 0.001 = 8786.432 KB$ of storage. In our example the matrix requires more storage than the stack size given in \ref{lst:ulimit}. In order to store further variables, you have to increase the storage size even further. This is possible by using the following command
+\begin{lstlisting}[language=bash, caption=Setting new stacksize on Unix-like system]
+ulimit -s 9000
+\end{lstlisting}
+
+\subsection{Bug 5: Locking order}
+In our final bug we found ourselves in a deadlock situation in each of the \texttt{omp section} which are execute in parallel, where a thread locks \texttt{locka} and simultaneously another thread locks \texttt{lockb}, as a next step both threads want to lock each others \texttt{omp\_lock\_t}, but because its already locked they cannot do that, resulting in a deadlock. The solution can be seen in the simplified code in Listing \ref{lst:bug5}, where each thread only locks one of the variable and then as soon as the lock is not needed anymore it is unlocked.
+\begin{lstlisting}[language=C++, caption=Non-Deadlock fix for omp\_bug-5.c, label=lst:bug5]
+#pragma omp sections nowait
+    {
+#pragma omp section
+      {
+        omp_set_lock(&locka);
+					/* MORE CODE */
+        omp_unset_lock(&locka);
+        omp_set_lock(&lockb);
+					/* MORE CODE */
+        omp_unset_lock(&lockb);
+      }
+
+#pragma omp section
+      {
+        omp_set_lock(&lockb);
+					/* MORE CODE */
+        omp_unset_lock(&lockb);
+        omp_set_lock(&locka);
+					/* MORE CODE */
+        omp_unset_lock(&locka);
+      }
+    } /* end of sections */
+\end{lstlisting}
+

@@ -1,0 +1,12 @@
+\section{Parallel loop dependencies with OpenMP}
+Two major changes were made in order to parallelize the code and keep it working independently of the schedule pragma. Because of the latter point, we are not allowed to use the scheduling to our advantage, therefore we have to compute the \texttt{Sn} using the power function, this guarantees that \texttt{Sn} is properly computed no matter if it is serial, dynamic or static scheduled.\newline
+Furthermore we introduce the \texttt{firstprivate} and \texttt{lastprivate} for \texttt{Sn} so the predefined value before the loop is copy into a private variable for each thread and that after the parallel for loop \texttt{Sn} is assigned  to the value compute of the last iteration of the loop when $n=N$. \texttt{Sn} can then be used for the print statement, which follows afterwards. 
+\begin{lstlisting}[language=C++, caption=Parallelized section of recur\_omp.c, label=lst:ldp]
+#pragma omp parallel for firstprivate(Sn) lastprivate(Sn)
+  for (n = 0; n <= N; ++n) {
+    Sn = pow(up, n);
+    opt[n] = Sn;
+  }
+\end{lstlisting}
+
+

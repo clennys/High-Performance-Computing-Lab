@@ -76,8 +76,6 @@ void print_results(float array[N], int tid, int section) {
     printf("\n");
   } /*** end of critical ***/
 
-// The section construct is one way to distribute different tasks to different threads. 
-// Race condition both are waiting for the other threads never getting there.
-#pragma omp barrier
+ #pragma omp barrier
   printf("Thread %d done and synchronized.\n", tid);
 }

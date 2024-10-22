@@ -1,0 +1,27 @@
+\section{Parallel histogram calculation using OpenMP}
+In this exercise we will be analyzing the strong scaling of the parallel implementation of the histogram computation. The measured timings can be found in Table \ref{tab:hist-scaling}.
+Because this is strong scaling analysis we kept the array size of the vector constant at $2 \cdot 10^9$ throughout the tests.\newline
+The serial execution provides us with a baseline for comparison with the parallelized versions.
+The single threaded execution shows a minor increase in performance, which is unexpected, due to the fact that there should be an overhead due to the thread management. This  indicates that the overhead was somehow less significant and it could be based on the workload of the cluster.
+As we increase the number of threads, between 2 and 8 threads, we can observe a significant reduction in execution time, which indicates efficient scaling, when that workload is distributed over more threads.\newline
+When comparing the timing from 8 to 16 threads, the execution time still slightly decreases, but at much lower rate than before. This leads to the conclusion that the efficiency decreases and the thread management overhead and potential contention between threads for shared resources.\newline
+From 32 onwards the timing increases, which means that the overhead outweighs the benefits gained from parallelizing the code. Another important factor that plays into the slower execution time is that the node only has 20 cores, resulting in more threads than cores, which means that certain threads potentially have to wait their turn until they can execute their chunk of code.
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Threads} & \textbf{Timing} \\ \hline
+		Serial           & 0.839258s       \\ \hline
+		1                & 0.830452s       \\ \hline
+		2                & 0.418288s       \\ \hline
+		4                & 0.213519s       \\ \hline
+		8                & 0.110719s       \\ \hline
+		16               & 0.112852s       \\ \hline
+		32               & 0.120083s       \\ \hline
+		64               & 0.127492s       \\ \hline
+		128              & 0.129270s        \\ \hline
+	\end{tabular}
+	\caption{Execution time for strong scaling parallel histogram calculation}
+	\label{tab:hist-scaling}
+\end{table}
+
