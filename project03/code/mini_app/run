@@ -1,0 +1,38 @@
+#!/bin/bash
+#SBATCH --job-name=pde				    # Job name
+#SBATCH --output=output_%j.log          # Output file (with job ID)
+#SBATCH --error=error_%j.log            # Error file (with job ID)
+#SBATCH --time=00:30:00                 # Time limit hrs:min:sec
+#SBATCH --ntasks=1						# Number of tasks
+#SBATCH --cpus-per-task=16
+
+module load gcc
+
+make clean
+make
+
+THREADS=(1 2 4 8 16) 
+RESOLUTION=(64 128 256 512 1024)
+
+echo "======== STRONG SCALING ========="
+for i in "${THREADS[@]}"; do
+    export OMP_NUM_THREADS=$i
+        echo "OMP_NUM_THREADS = $OMP_NUM_THREADS" 
+	for j in "${RESOLUTION[@]}"; do
+		echo "RESOLUTION = $j x $j" 
+	./main.exe $j 100 0.005
+    done
+done
+
+echo "======== WEAK SCALING ========="
+BASE_RESOLUTION=(64 128 256)
+for j in "${BASE_RESOLUTION[@]}"; do
+	for i in "${THREADS[@]}"; do
+		export OMP_NUM_THREADS=$i
+		echo "OMP_NUM_THREADS = $OMP_NUM_THREADS" 
+		calc=$(echo "sqrt($i) * $j + 0.5" | bc -l)
+		rounded_calc=$(printf "%.0f" "$calc")
+		echo "RESOLUTION = $rounded_calc x $rounded_calc" 
+		./main.exe $rounded_calc 100 0.005
+	done
+done

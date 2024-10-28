@@ -1,7 +1,7 @@
 \section{Parallel reduction operations using OpenMP}
 \subsection{Dot Product}
 The implementation of the parallel versions of the Dot Product are given in Listing \ref{lst:red} and \ref{lst:crit}.
-Important to note here is that in the critical method we do not compute \texttt{alpha\_local} in a critical section, which would lead to a serial code with additional overhead, but compute the \texttt{alpha} locally and then use the critical section to compute the final \texttt{alpha}. Both methods basically do a reduction operation, but is there a difference in performance? \newline
+Important to note here is that the critical construct is not used to compute \texttt{alpha\_local} directly, which would lead to a serial code with an additional overhead. Rather compute the \texttt{alpha} locally on each thread and then use the critical construct to compute the final \texttt{alpha}. Both methods essentially perform a reduction operation, but is there a difference in performance? \newline
 \begin{minipage}{.48\textwidth}
 \begin{lstlisting}[language=C++, caption=Reduction Method, label=lst:red]
   for (int iterations = 0; iterations < NUM_ITERATIONS; iterations++) {
@@ -34,10 +34,9 @@ for (int iterations = 0; iterations < NUM_ITERATIONS; iterations++) {
 
 \end{lstlisting}
 \end{minipage} \newline
-In order to figure this out we use the strong scaling analysis, where the amount of work stays constant (fixed size of the vector length), no matter how many threads we have \cite{hager_introduction_2010}.
-For this analysis we introduce a plot that compares the execution time per thread to the number of threads \ref{fig:scale}. Looking at the values of the plot, they appear to be identical, when looking at the actual values, we can see that the reduction method is a tiny bit faster. This is due to having a lower thread synchronization overhead. For both methods we can clearly deduct that when increasing the number of threads from 1 to 16, we can see an significant decrease in execution time, while increasing the number of threads from 16 to 20 we either get a very small decrease in execution time or the execution even increases. This is mostly likely caused by the overhead caused the synchronization and the increased competition of resources, such as cache coherency and memory bandwidth.
+In order to figure this out we use strong scaling analysis, where the amount of work stays constant (fixed size of the vector length) \cite{hager_introduction_2010}.
+For this analysis we introduce a plot that compares the execution time per thread to the number of threads \ref{fig:scale}. Looking at the values of the plot, they appear to be identical,yet having a closer look at the actual values, we can see that the reduction method is a tiny bit faster, which is due to having a lower thread overhead compared to the critical implementation. For both methods we can clearly deduct that when increasing the number of threads from 1 to 16, we can see an significant decrease in execution time, while increasing the number of threads from 16 to 20 we either get a very small decrease in execution time or the execution even increases. This is mostly likely caused by the overhead caused the synchronization and the increased competition of resources, such as cache coherency and memory bandwidth.
 Comparing the slope of the curves, in both cases we can clearly see that for vector sizes $10^5$ and $10^6$ the execution time decreases more rapidly, meaning when we add more threads to this vector size for small number of threads the speedup is a lot better and faster.
-% TODO: WHY?
 \begin{figure}[H]
     \centering
     \begin{subfigure}[b]{\textwidth}

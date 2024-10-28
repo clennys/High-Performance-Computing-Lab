@@ -3,7 +3,7 @@ In this exercise we will be analyzing the strong scaling of the parallel impleme
 Because this is strong scaling analysis we kept the array size of the vector constant at $2 \cdot 10^9$ throughout the tests.\newline
 The serial execution provides us with a baseline for comparison with the parallelized versions.
 The single threaded execution shows a minor increase in performance, which is unexpected, due to the fact that there should be an overhead due to the thread management. This  indicates that the overhead was somehow less significant and it could be based on the workload of the cluster.
-As we increase the number of threads, between 2 and 8 threads, we can observe a significant reduction in execution time, which indicates efficient scaling, when that workload is distributed over more threads.\newline
+As we increase the number of threads, between 2 and 8 threads, we can observe a significant reduction in execution time, which indicates efficient scaling, when the workload is distributed over an increasing number of threads.\newline
 When comparing the timing from 8 to 16 threads, the execution time still slightly decreases, but at much lower rate than before. This leads to the conclusion that the efficiency decreases and the thread management overhead and potential contention between threads for shared resources.\newline
 From 32 onwards the timing increases, which means that the overhead outweighs the benefits gained from parallelizing the code. Another important factor that plays into the slower execution time is that the node only has 20 cores, resulting in more threads than cores, which means that certain threads potentially have to wait their turn until they can execute their chunk of code.
 \begin{table}[H]

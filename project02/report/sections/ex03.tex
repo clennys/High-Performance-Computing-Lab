@@ -1,7 +1,7 @@
 \section{Bug Hunt}
 
 \subsection{Bug 1: Check tid}
-For the first bug the issue is the \texttt{\#pragma} statement, see Listing \ref{lst:bug1}, because it includes already the \texttt{for} and the \texttt{schedule(static, chunk)} statement, both of which can only be used right before a for-loop.
+For the first bug, we can find the issue in the \texttt{\#pragma} statement, see Listing \ref{lst:bug1}, which is caused by already including the \texttt{for} and the \texttt{schedule(static, chunk)} statement, both of which can only be used right before a for-loop.
 \begin{lstlisting}[language=C++, caption=Bug in bug1.c, label=lst:bug1]
 #pragma omp parallel for shared(a, b, c, chunk) private(i, tid) \
               schedule(static, chunk)
@@ -10,7 +10,7 @@ For the first bug the issue is the \texttt{\#pragma} statement, see Listing \ref
 		/* CODE */
 	}
 \end{lstlisting}
-In order to fix the bug, we need to split the \texttt{\#pragma} statement in two distinct ones. The first one indicating that we are in a parallel region, shown on Line 1 of Listing \ref{lst:bug1_fix} and the second \texttt{\#pragma omp for} statement on Line 4 right before the loop we want to parallelize.
+In order to fix this bug, we need to split the \texttt{\#pragma} statement in two distinct ones. The first one indicating that we are in a parallel region, shown on Line 1 of Listing \ref{lst:bug1_fix} and the second \texttt{\#pragma omp for} statement on Line 4 right before the loop we want to parallelize.
 \begin{lstlisting}[language=C++, caption=Fix for bug1.c, label=lst:bug1_fix]
 #pragma omp parallel shared(a,b,c,chunk) private(i, tid)
 {
@@ -28,7 +28,7 @@ The second bug can be fixed by changing the variables \texttt{tid} and \texttt{i
 \begin{lstlisting}[language=C++, caption=Fix bug2.c, label=lst:bug2_fix]
 #pragma omp parallel private(tid, i)
 \end{lstlisting}
-By doing this every is now assigned its proper thread Id (\texttt{tid}) and the number of threads is now only printed by thread with index 0. Furthermore by setting \texttt{i} to private, each thread can now process its chunk of the \texttt{total}, otherwise \texttt{i} gets incremented by every thread, which could lead to certain \texttt{i} being skipped in the \texttt{total} computation.
+By doing this every thread is now assigned its proper thread Id (\texttt{tid}) and the number of threads is now only printed by thread with index 0. Furthermore by setting \texttt{i} to private, each thread can now process its chunk of the \texttt{total}, otherwise \texttt{i} gets incremented by every thread, which could lead to certain \texttt{i} being skipped in the \texttt{total} computation.
 
 \subsection{Bug 3: Check barrier}
 For this bug it is critical to understand what the \texttt{sections} constructs does. Consulting the documentation \cite{noauthor_ibm_2024}, sections distribute work among the threads in a parallel region.
@@ -36,7 +36,7 @@ This means in our case one of the threads executes section 1, another section 2 
 In addition both \texttt{omp section} call the \texttt{print\_results} function, which includes another \texttt{omp barrier} statement at the end of the function.\newline
 In OpenMP, threads cannot differentiate between different barriers in parallel region, which means that when the two threads executing the code in the section 1 and 2 reach the \texttt{omp barrier} statement in the \texttt{print\_results} function, all the other threads are continuing executing the code, because every thread reached a barrier. When the threads that executed the sections reach the barrier after the section they halt there and wait until all the other threads reach barrier, which never happens, hence the program does not halt.\newline
 \newline
-The solution to fix this bug is simply to remove the \texttt{omp barrier} statement at the end of the \texttt{print\_results} function. Then the threads not entering a section, are waiting until the other two threads are finished with their section and all the threads are exciting together.
+The solution to fix this bug is simply to remove the \texttt{omp barrier} statement at the end of the \texttt{print\_results} function. Then the threads not entering a section, are waiting until the other two threads are finished with their section and all the threads are printing the exciting together.
 \subsection{Bug 4: Stacksize}
 In OpenMP there exists a stack size limit for each thread in a parallel region. 
 On Unix like systems you can run the command
