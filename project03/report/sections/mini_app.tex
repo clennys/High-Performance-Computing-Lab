@@ -1,0 +1,62 @@
+\section{Adding OpenMP to the nonlinear PDE mini-app [50 Points]}
+
+\subsection{Implementation}
+In order to ensure that the mini-app still compiles without OpenMP enabled we introduce the following macro
+\begin{lstlisting}[language=C++, caption=\_OpenMP macro, label=lst:omp-macro]
+#ifdef _OPENMP
+/* CODE */
+#else
+/* CODE */
+#endif
+\end{lstlisting}
+which functions similar to an \texttt{if} statement, that is evaluated at compile time.
+All the necessary functions from the OpenMP that would conflict with the compilation process (which does not include the \texttt{\#pragma omp} statements) are placed inside the \texttt{\#ifdef} macro. \cite{noauthor_conditional_nodate}
+The updated welcome massage can be seen in Figure \ref{fig:welcome}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../media/welcome_parallel.png}
+	\caption{Welcome Massage for parallel Implementation}
+	\label{fig:welcome}
+\end{figure}
+For the parallelization of all the loops in the \texttt{linalg.c} file, I introduce basic OpenMP pragma for loops statements including the reduction clause, when necessary. No extra clauses were introduced, because these are rather simple loops, which OpenMP should be able to optimize very well on its own.\newline
+\newline
+In contrast for the diffusion stencil different ways of optimizing the loop were experimented on. This included using the \texttt{collapse} clause for the inner grid points \cite{noauthor_collapse_nodate}, trying out different loop scheduling (static, guided, dynamic), as well as parallelizing the loops for the boundary points. None of these approaches brought a significant improvement to the execution, therefore the decision was taken to resort to the simplest solution, which is simply to use \texttt{\#pragma omp parallel for} statement for the inner grid points and let OpenMP do all the optimization.
+
+\subsection{Boundary Loops}
+The boundary loops play a essential role in diffusion simulations by appropriately handling boundary conditions. By enforcing boundary conditions they are maintaining the stability and correctness of the model. In the mini-app they are split up in East, West, North, South and Corners. Each boundary loop has a unique constraint that needs to taken into consideration, this includes handling points outside of the domain or including fixed boundary values.
+
+
+
+\subsection{Bitwise identical results}
+Producing a bitwise-identical result using more than one thread in OpenMP can be a challenge, because of the non-associativity of floating point addition or multiplications, which can lead to different results even when using the same number of threads. More specifically when using the reduction clause, OpenMP does not specify the location nor the order in which the values are combined. This can lead to different rounding errors, due to the limited accuracy of floating point operations, depending on the order of the reduction \cite{noauthor_reduction_nodate}. Technically it would be possible to have bitwise-identical solution for a fixed number of threads, where we guarantee that always the same chunk of data is processed by a thread and then have a fixed order in which we reduce individual results, but as soon as we change the number of threads we can not guarantee a bitwise-identical solution. In addition this method would have a clear impact on performance, because these additional assumption we would need to take would create an additional overhead.
+
+\subsection{Strong \& Weak Scaling Analysis}
+In the strong analysis scenario, where the problem size is constant and the goal is to reduce the execution time by increasing the number of threads. The Figure \ref{fig:strong} depicts the execution time in seconds versus the number of threads, for the y-axis a logarithmic scale was chosen in order to examine the variations in timing across different resolutions.\newline
+For the smallest problem size in $N=64\times64$ the curve is basically flat for 2 to 4 number of threads, increasing it even further the execution time starts to increase, which is caused by the increasing overhead created by OpenMP, when handling synchronization, communication and thread management. This clearly outweighs the benefits given by the parallelization. This behavior clearly indicates that for efficient use of the threads the work load is too small. Increasing the resolution, we can now clearly see a reduction of execution from threads 2 to 4 for the $N=128 \times 128$ and even from threads 2 to 8 for the resolutions from $N=256\times256$ to $N=1024\times1024$. This clearly shows that all these resolution benefit from a increasing number of threads, yet when increasing to 16 threads for all the resolution the execution time increases or stays relatively stable (for higher resolutions). This is again caused by the increasing overhead. In addition this clearly shows that for all resolution a saturation point is reached, after which the benefits diminish. \newline
+\newline
+In the weak scaling scenario, when increasing the number of threads, the workload per thread stays constant. In the optimal scenario the execution time stays constant, when scaling up the number of threads and resolution. This resolution is adjusted by the following formula
+\begin{equation}
+	n = n_{\text{base}} \cdot \sqrt{N_{\text{CPU}}}
+\end{equation}
+If there is an increase in execution time this represents the overhead created by the communication, thread management and synchronization. The results of the mini-app using weak scaling can be seen in Figure \ref{fig:weak}, where a logarithmic scale was used for the y-axis to compare the execution times more conveniently. In addition the dashed lines indicate the constant optimal execution time. Smaller base resolutions ($64 \times 64$ and $128\times128$) clearly show less efficient weak scaling. For smaller number of threads the execution time increases significantly. Once more this shows the overhead encountered is substantial in comparison to the workload. This suggests that problem size might be too small to leverage parallel resources more effectively. For higher base resolution ($256 \times 256$) weak scaling is improved, which can be seen by the more gradual grow when increasing the number of threads, suggesting that due to the higher resolutions the overhead is less dominant. When comparing curves for each base resolution to its optimal weak scaling, we can clearly make out a strong deviation, which becomes more noticeable when increasing the number of threads and as a consequence, also the overhead.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.8\textwidth}
+        \centering
+	\includegraphics[width=\textwidth]{../media/strong_scaling.png}
+	\caption{Strong Scaling}
+	\label{fig:strong}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.8\textwidth}
+        \centering
+\includegraphics[width=\textwidth]{../media/weak_scaling.png}
+	\caption{Weak Scaling}
+	\label{fig:weak}
+
+    \end{subfigure}
+    \caption{Scaling Plots of the mini-app}
+    \label{fig:scaling}
+\end{figure}
+

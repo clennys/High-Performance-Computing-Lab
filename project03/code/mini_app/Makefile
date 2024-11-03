@@ -1,5 +1,6 @@
 CXX     ?= g++
 CXXFLAGS = -O3 -fopenmp
+# CXXFLAGS = -O3
 
 SOURCES = walltime.cpp stats.cpp data.cpp operators.cpp linalg.cpp main.cpp
 HEADERS = walltime.h   stats.h   data.h   operators.h   linalg.h
@@ -30,4 +31,4 @@ main: $(OBJ)
 
 .PHONY: clean
 clean:
-	$(RM) main $(OBJ) output.*
+	$(RM) main.exe $(OBJ) output.*
