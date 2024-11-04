@@ -4,8 +4,8 @@ CFLAGS=-O3 -lpng
 all: mandel_mpi
 
 mandel_mpi:  mandel_mpi.c pngwriter.c
-	$(CC) $^ $(CFLAGS) -o $@
+	$(CC) $^ $(CFLAGS) -o $@.exe
 
 clean:
-	rm -f mandel_mpi
+	rm -f mandel_mpi.exe
 

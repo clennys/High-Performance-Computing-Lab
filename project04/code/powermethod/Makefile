@@ -5,7 +5,7 @@ LDFLAGS = -lm # -fsanitize=address
 all: powermethod_rows
 
 powermethod_rows: powermethod_rows.o walltime.o
-	$(CC) $(LDFLAGS) $^ -o $@
+	$(CC) $(LDFLAGS) $^ -o $@.exe
 
 powermethod_rows.o: powermethod_rows.c
 	$(CC) -c $(CFLAGS) $<
@@ -15,4 +15,4 @@ walltime.o: walltime.c walltime.h
 
 .PHONY: clean
 clean:
-	$(RM) *.o powermethod_rows
+	$(RM) *.o powermethod_rows.exe
