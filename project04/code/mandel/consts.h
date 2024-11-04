@@ -1,34 +1,35 @@
 #ifndef CONSTS_H
 #define CONSTS_H
+#include <mpi.h>
 
 // maximum number of iterations
 #define MAX_ITERS 10000
 
 // image size
-#define IMAGE_WIDTH  4096
+#define IMAGE_WIDTH 4096
 #define IMAGE_HEIGHT 4096
 
 // the extent of the parameter plane ( MIN_X + iMIN_Y <= c < MAX_X + iMAX_Y )
 #define MIN_X -2.1
-#define MAX_X  0.7
+#define MAX_X 0.7
 #define MIN_Y -1.4
-#define MAX_Y  1.4
+#define MAX_Y 1.4
 
 typedef struct {
-    long nx;     // Local  domain size in x-direction
-    long ny;     // Local  domain size in y-direction
-    long startx; // Global domain start index of local domain in x-direction
-    long starty; // Global domain start index of local domain in y-direction
-    long endx;   // Global domain end   index of local domain in x-direction
-    long endy;   // Global domain end   index of local domain in y-direction
+  long nx;     // Local  domain size in x-direction
+  long ny;     // Local  domain size in y-direction
+  long startx; // Global domain start index of local domain in x-direction
+  long starty; // Global domain start index of local domain in y-direction
+  long endx;   // Global domain end   index of local domain in x-direction
+  long endy;   // Global domain end   index of local domain in y-direction
 } Domain;
 
 typedef struct {
-    int x;         // x-coord. of current MPI process within the process grid
-    int y;         // y-coord. of current MPI process within the process grid
-    int nx;        // Number of processes in x-direction
-    int ny;        // Number of processes in y-direction
-    MPI_Comm comm; // (Cartesian) MPI communicator
+  int x;         // x-coord. of current MPI process within the process grid
+  int y;         // y-coord. of current MPI process within the process grid
+  int nx;        // Number of processes in x-direction
+  int ny;        // Number of processes in y-direction
+  MPI_Comm comm; // (Cartesian) MPI communicator
 } Partition;
 
 /**
@@ -39,21 +40,28 @@ y direction (p.nx, p.ny) and the coordinates of the current MPI process
 (p.x, p.y).
 */
 Partition createPartition(int mpi_rank, int mpi_size) {
-    Partition p;
+  Partition p;
 
-    // TODO: determine size of the grid of MPI processes (p.nx, p.ny), see MPI_Dims_create()
-    p.ny = 1;
-    p.nx = 1;
+  // TODO: determine size of the grid of MPI processes (p.nx, p.ny), see
+  // MPI_Dims_create()
+  int dims[2] = {0, 0}; // MPI_Dims_create decides the dimensions
+  MPI_Dims_create(mpi_size, 2, dims);
+  p.nx = dims[0];
+  p.ny = dims[1];
 
-    // TODO: Create cartesian communicator (p.comm), we do not allow the reordering of ranks here, see MPI_Cart_create()
-    MPI_Comm comm_cart = MPI_COMM_WORLD;
-    p.comm = comm_cart;
-    
-    // TODO: Determine the coordinates in the Cartesian grid (p.x, p.y), see MPI_Cart_coords()
-    p.y = 0;
-    p.x = 0;
+  // TODO: Create cartesian communicator (p.comm), we do not allow the
+  // reordering of ranks here, see MPI_Cart_create()
+  int periods[2] = {0, 0}; // Non-periodic
+  MPI_Cart_create(MPI_COMM_WORLD, 2, dims, periods, 0, &p.comm);
 
-    return p;
+  // TODO: Determine the coordinates in the Cartesian grid (p.x, p.y), see
+  // MPI_Cart_coords()
+  int coords[2];
+  MPI_Cart_coords(p.comm, mpi_rank, 2, coords);
+  p.x = coords[0];
+  p.y = coords[1];
+
+  return p;
 }
 
 /**
@@ -63,18 +71,21 @@ the coordinates to represent position in the grid of the given
 process (mpi_rank)
 */
 Partition updatePartition(Partition p_old, int mpi_rank) {
-    Partition p;
+  Partition p;
 
-    // copy grid dimension and the communicator
-    p.ny = p_old.ny;
-    p.nx = p_old.nx;
-    p.comm = p_old.comm;
-    
-    // TODO: update the coordinates in the cartesian grid (p.x, p.y) for given mpi_rank, see MPI_Cart_coords()
-    p.y = 0;
-    p.x = 0;
+  // copy grid dimension and the communicator
+  p.ny = p_old.ny;
+  p.nx = p_old.nx;
+  p.comm = p_old.comm;
 
-    return p;
+  // TODO: update the coordinates in the cartesian grid (p.x, p.y) for given
+  // mpi_rank, see MPI_Cart_coords()
+  int coords[2];
+  MPI_Cart_coords(p.comm, mpi_rank, 2, coords);
+  p.x = coords[0];
+  p.y = coords[1];
+
+  return p;
 }
 
 /**
@@ -86,22 +97,21 @@ that will be computed by the current process d.startx, d.endx and d.starty,
 d.endy).
 */
 Domain createDomain(Partition p) {
-    Domain d;
-    
-    // TODO: compute size of the local domain
-    d.nx = IMAGE_WIDTH;
-    d.ny = IMAGE_HEIGHT;
+  Domain d;
 
-    // TODO: compute index of the first pixel in the local domain
-    d.startx = 0;
-    d.starty = 0;
+  // TODO: compute size of the local domain
+  d.nx = IMAGE_WIDTH / p.nx;
+  d.ny = IMAGE_HEIGHT / p.ny;
 
-    // TODO: compute index of the last pixel in the local domain
-    d.endx = IMAGE_WIDTH - 1;
-    d.endy = IMAGE_HEIGHT - 1;
+  // TODO: compute index of the first pixel in the local domain
+  d.startx = p.x * d.nx;
+  d.starty = p.y * d.ny;
 
-    return d;
+  // TODO: compute index of the last pixel in the local domain
+  d.endx = d.startx + d.nx - 1;
+  d.endy = d.startx + d.ny - 1;
+
+  return d;
 }
-
 
 #endif /* CONSTS_H */
