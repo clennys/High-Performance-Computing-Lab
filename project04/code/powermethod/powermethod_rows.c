@@ -62,13 +62,13 @@ int main(int argc, char *argv[]) {
   // Partition work evenly among processes
   int nrows_local, row_beg_local, row_end_local;
   // printf("[Proc %3d] Doing rows %d to %d\n", rank, row_beg_local,
-         // row_end_local);
+  // row_end_local);
   // TODO: Partition the "n" rows of the matrix evenly among the "size" MPI
   //        processes.
   // Hint : The first "n % size" processes get "n / size + 1" rows, while the
   //        remaining processes get "n / size".
   nrows_local = n / size + (rank < n % size ? 1 : 0);
-  row_beg_local = (n / size) * rank + (rank < n % size ? rank : n % size);
+  row_beg_local = nrows_local * rank + (rank < n % size ? 0 : n % size);
   row_end_local = row_beg_local + nrows_local;
   printf("[Proc %3d] Doing rows %d to %d\n", rank, row_beg_local,
          row_end_local);
@@ -141,6 +141,7 @@ int main(int argc, char *argv[]) {
   double theta, theta_local, error;
   double *y_local = (double *)calloc(nrows_local, sizeof(double));
   double *v = (double *)calloc(n, sizeof(double));
+  double *v_local = (double *)calloc(nrows_local, sizeof(double));
   int iter;
   double time_start = walltime();
   for (iter = 0; iter < niter; ++iter) {
@@ -158,8 +159,10 @@ int main(int argc, char *argv[]) {
     double norm = sqrt(norm2);
 
     for (int i_global = row_beg_local; i_global < row_end_local; ++i_global) {
-      v[i_global] = y[i_global] / norm;
+      v_local[i_global - row_beg_local] = y[i_global] / norm;
     }
+    MPI_Allgather(v_local, nrows_local, MPI_DOUBLE, v, nrows_local, MPI_DOUBLE,
+                  MPI_COMM_WORLD);
     // Matrix-vector multiply: y = A v
     // Hint: Compute only the local rows, save them in the buffer y_local
     //       and synchronize the result using MPI_Allgather / MPI_Allgatherv.
@@ -214,6 +217,7 @@ int main(int argc, char *argv[]) {
   free(A);
   free(y);
   free(y_local);
+  free(v_local);
   free(v);
 
   // Finalize MPI

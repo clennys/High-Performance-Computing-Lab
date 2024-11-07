@@ -1,0 +1,28 @@
+#!/bin/bash
+#SBATCH --job-name=powermethod			# Job name
+#SBATCH --output=output_%j.log          # Output file (with job ID)
+#SBATCH --error=error_%j.log            # Error file (with job ID)
+#SBATCH --time=00:30:00                 # Time limit hrs:min:sec
+#SBATCH --ntasks=16
+#SBATCH --ntasks-per-node=16
+
+module load gcc openmpi
+
+make clean
+make
+
+PROCESSES=(1 2 4 8 16 20) 
+
+echo "======== STRONG SCALING ========="
+for i in "${PROCESSES[@]}"; do
+	mpirun -np $i ./powermethod_rows.exe 3 10000 300 -1e-6 
+done
+
+echo "======== WEAK SCALING ========="
+BASE=10000
+	for i in "${PROCESSES[@]}"; do
+		calc=$(echo "sqrt($i) * $BASE" | bc -l)
+		rounded_calc=$(printf "%.0f" "$calc")
+		echo "RESOLUTION = $rounded_calc x $rounded_calc" 
+		mpirun -np $i ./powermethod_rows.exe 3 $rounded_calc 300 -1e-6 
+done
