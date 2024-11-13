@@ -1,0 +1,49 @@
+Loading gcc/13.2.0-gcc-8.5.0-5hqhkwo
+  Loading requirement: gcc-runtime/8.5.0-gcc-8.5.0-7fyorqa
+    gmp/6.2.1-gcc-8.5.0-lrpcvy5 mpfr/4.2.1-gcc-8.5.0-ybeybcx
+    mpc/1.3.1-gcc-8.5.0-cv2gjfw zlib-ng/2.1.6-gcc-8.5.0-ztbc5xt
+    zstd/1.5.5-gcc-8.5.0-azepnn7
+
+Loading openmpi/5.0.5
+  Loading requirement: ucx/1.15.0-gcc-8.5.0-cnozz5i
+rm -f *.o powermethod_rows.exe
+mpicc -c -O3  powermethod_rows.c
+mpicc -c -O3  walltime.c
+mpicc -lm  powermethod_rows.o walltime.o -o powermethod_rows.exe
+======== STRONG SCALING =========
+Doing 300 power iterations on 10000x10000 matrix distributed row-wise over 1 processes...
+Power method: NOT converged in 300 iteration(s) to largest absolute eigenvalue theta = 9985.355091 in 36.306821 second(s) time.
+### 1, 10000, 300, 9985.355091, 36.306821 ###
+Doing 300 power iterations on 10000x10000 matrix distributed row-wise over 2 processes...
+Power method: NOT converged in 300 iteration(s) to largest absolute eigenvalue theta = 9985.355091 in 18.613842 second(s) time.
+### 2, 10000, 300, 9985.355091, 18.613842 ###
+Doing 300 power iterations on 10000x10000 matrix distributed row-wise over 4 processes...
+Power method: NOT converged in 300 iteration(s) to largest absolute eigenvalue theta = 9985.355091 in 9.768566 second(s) time.
+### 4, 10000, 300, 9985.355091, 9.768566 ###
+Doing 300 power iterations on 10000x10000 matrix distributed row-wise over 8 processes...
+Power method: NOT converged in 300 iteration(s) to largest absolute eigenvalue theta = 9985.355091 in 5.768453 second(s) time.
+### 8, 10000, 300, 9985.355091, 5.768453 ###
+Doing 300 power iterations on 10000x10000 matrix distributed row-wise over 16 processes...
+Power method: NOT converged in 300 iteration(s) to largest absolute eigenvalue theta = 9985.355091 in 4.091922 second(s) time.
+### 16, 10000, 300, 9985.355091, 4.091922 ###
+======== WEAK SCALING =========
+RESOLUTION = 10000 x 10000
+Doing 300 power iterations on 10000x10000 matrix distributed row-wise over 1 processes...
+Power method: NOT converged in 300 iteration(s) to largest absolute eigenvalue theta = 9985.355091 in 36.245287 second(s) time.
+### 1, 10000, 300, 9985.355091, 36.245287 ###
+RESOLUTION = 14142 x 14142
+Doing 300 power iterations on 14142x14142 matrix distributed row-wise over 2 processes...
+Power method: NOT converged in 300 iteration(s) to largest absolute eigenvalue theta = 14120.701252 in 36.819576 second(s) time.
+### 2, 14142, 300, 14120.701252, 36.819576 ###
+RESOLUTION = 20000 x 20000
+Doing 300 power iterations on 20000x20000 matrix distributed row-wise over 4 processes...
+Power method: NOT converged in 300 iteration(s) to largest absolute eigenvalue theta = 19970.116771 in 37.212918 second(s) time.
+### 4, 20000, 300, 19970.116771, 37.212918 ###
+RESOLUTION = 28284 x 28284
+Doing 300 power iterations on 28284x28284 matrix distributed row-wise over 8 processes...
+Power method: NOT converged in 300 iteration(s) to largest absolute eigenvalue theta = 28242.182601 in 38.226078 second(s) time.
+### 8, 28284, 300, 28242.182601, 38.226078 ###
+RESOLUTION = 40000 x 40000
+Doing 300 power iterations on 40000x40000 matrix distributed row-wise over 16 processes...
+Power method: NOT converged in 300 iteration(s) to largest absolute eigenvalue theta = 39932.150238 in 39.031686 second(s) time.
+### 16, 40000, 300, 39932.150238, 39.031686 ###
