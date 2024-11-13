@@ -1,5 +1,4 @@
 #!/bin/bash -l
-
 #SBATCH --nodes=1
 #SBATCH --ntasks=16
 #SBATCH --ntasks-per-node=16

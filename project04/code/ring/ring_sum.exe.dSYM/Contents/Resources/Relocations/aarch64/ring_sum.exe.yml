@@ -1,5 +1,5 @@
 ---
 triple:          'arm64-apple-darwin'
-binary-path:     ring_sum
+binary-path:     ring_sum.exe
 relocations:     []
 ...

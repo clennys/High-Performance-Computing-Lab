@@ -1,10 +1,46 @@
 import numpy as np
+import argparse
 
+def generate_matrix(n, test_case):
+    """
+    Generate matrix A based on the given test case.
+
+    Parameters
+    ----------
+    n : int
+        Size of the matrix (n x n).
+    test_case : int
+        The test case number.
+
+    Returns
+    -------
+    A : ndarray
+        The generated matrix.
+    """
+    A = np.zeros((n, n))
+    
+    if test_case == 1:
+        # Test case 1: A(i, j) = 1 for 1 <= i, j <= n
+        A[:, :] = 1.0
+    elif test_case == 2:
+        # Test case 2: A(i, j) = 1 if i == j, otherwise 0
+        np.fill_diagonal(A, 1.0)
+    elif test_case == 3:
+        # Test case 3: A(i, j) = i if i == j, otherwise 0
+        np.fill_diagonal(A, np.arange(1, n+1))
+    elif test_case == 4:
+        # Test case 4: A(i, j) = uniform random number [0, 1[
+        rng = np.random.default_rng(42)
+        A = rng.random((n, n))
+    else:
+        raise ValueError("Invalid test case number.")
+    
+    return A
 
 def powermethod(A, y, niter, tol, verbose=False):
     """
     Compute approximations of the largest absolute eigenvalue and eigenvector
-    with the power method [1]_.
+    with the power method.
 
     Parameters
     ----------
@@ -25,37 +61,42 @@ def powermethod(A, y, niter, tol, verbose=False):
         Largest absolute eigenvalue.
     v : array_like
         Corresponding eigenvector.
-
-    References
-    ----------
-    .. [1] Bai et al., "Templates for the Solution of Linear Systems: Building
-           Blocks for Iterative Methods", SIAM, 2000,
-           https://doi.org/10.1137/1.9780898719581
     """
     for it in range(niter):
-        # Normalize vector: v = y / || y ||_2
-        v = y / np.linalg.norm(y)
-        # Matrix-vector multiply: y = A v (local rows)
-        y = np.dot(A, v)
-        # Compute eigenvalue: theta = v^T y
-        theta = np.dot(v, y)
+        v = y / np.linalg.norm(y)  # Normalize vector
+        y = np.dot(A, v)           # Matrix-vector multiply
+        theta = np.dot(v, y)       # Compute eigenvalue
         if verbose:
-            print(f"{it = }, {theta = :25.15f}, {y = }")
-        # Check convergence
-        if np.linalg.norm(y -  theta*v) <= tol*np.abs(theta):
+            print(f"{it = }, {theta = :25.15f}")
+        if np.linalg.norm(y - theta * v) <= tol * np.abs(theta):
             v = y / np.linalg.norm(y)
             break
-    if it < niter:
-        return theta, v
-    else:
-        raise ValueError("Did not converge.")
 
+    if it == (niter - 1):
+        raise ValueError("Did not converge.")
+    else:
+        return theta, v
 
 if __name__ == "__main__":
-    n = 5
+    parser = argparse.ArgumentParser(description="Power method for eigenvalue calculation with different test cases.")
+    parser.add_argument('--test_case', type=int, default=1, help="Test case number (1, 2, 3, or 4).")
+    parser.add_argument('--n', type=int, default=5, help="Size of the matrix (n x n).")
+    parser.add_argument('--niter', type=int, default=10, help="Maximum number of iterations.")
+    parser.add_argument('--tol', type=float, default=1.e-15, help="Tolerance for convergence.")
+    
+    args = parser.parse_args()
+    
+    # Generate the matrix A based on test case
+    A = generate_matrix(args.n, args.test_case)
+    
+    # Initialize the vector y with random values
     rng = np.random.default_rng(42)
-    A = np.ones((n, n))
-    # A = rng.random((n, n))
-    y = rng.random(n)
-    theta, y = powermethod(A, y, 10, 1.e-15, verbose=True)
-    print(f"Power method: {theta = }, {y = }")
+    y = rng.random(args.n)
+    
+    # Run the power method
+    try:
+        theta, y = powermethod(A, y, args.niter, args.tol, verbose=True)
+        print(f"Power method: {theta = }, {y = }")
+    except ValueError as e:
+        print(e)
+

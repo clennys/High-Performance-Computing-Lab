@@ -10,20 +10,25 @@ int main(int argc, char *argv[]) {
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 
   // IMPLEMENT: Ring sum algorithm
-  int sum = rank; // initialize sum
+  int sum = rank;
   int rec_rank = rank;
-  for (int i = 0; i < 2 * size - 1; i++) {
-    if (i % 2 == 0) {
-      MPI_Send(&rec_rank, 1, MPI_INTEGER, (rank + 1) % size, tag,
-               MPI_COMM_WORLD);
-
-    } else {
-      MPI_Recv(&rec_rank, 1, MPI_INTEGER, (rank - 1 + size) % size, tag,
+  int send_rank = rank;
+  for (int i = 0; i < size - 1; i++) {
+    if (rank % 2 == 0) {
+      MPI_Send(&send_rank, 1, MPI_INT, (rank + 1) % size, tag, MPI_COMM_WORLD);
+      MPI_Recv(&rec_rank, 1, MPI_INT, (rank - 1 + size) % size, tag,
                MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-      sum += rec_rank;
+    } else {
+      MPI_Recv(&rec_rank, 1, MPI_INT, (rank - 1 + size) % size, tag,
+               MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+      MPI_Send(&send_rank, 1, MPI_INT, (rank + 1) % size, tag, MPI_COMM_WORLD);
     }
+    sum += rec_rank;
+    send_rank = rec_rank;
+
+    // printf("Iter %i -> Process %i: Sum = %i\n", i, rank, sum);
   }
-  printf("Final Process %i: Sum = %i\n", rank, sum);
+  printf("Process %i: Sum = %i\n", rank, sum);
 
   // Finalize MPI
   MPI_Finalize();
