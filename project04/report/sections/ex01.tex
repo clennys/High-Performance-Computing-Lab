@@ -1,0 +1,26 @@
+\section{Task: Ring maximum using MPI [10 Points]}
+%In your report, briefly comment on your chosen communication pattern, particularly how you avoid potential deadlock issues.
+There are multiple possible solutions to solve this problem without having a deadlock.
+I chose to separate my processes into two disjointed groups based on their rank id. More precisely into even and odd ranks, where they alternate between sending and receiving and therefore preventing deadlocks. In this implementation even rank ids send in a first step and then receive in a second step, the odd rank ids do the opposite.
+For an even number of total processes this works because the highest rank id is odd and therefore for a given process all its neighbors are sending while the particular process is receiving and vice versa.
+When having an odd number of total processes, this results in the highest rank id being even and wanting to send their content to rank 0. Even though both processes are sending at the same time, based on the given topology we know that process 0 will first send it contents to an odd rank process and is then able to receive the contents from the highest rank process.
+
+
+\begin{lstlisting}[language=C++, caption=Ring topology using alternating send and receive, label=lst:ring]
+int sum = rank;
+int rec_rank = rank;
+int send_rank = rank;
+for (int i = 0; i < size - 1; i++) {
+	if (rank % 2 == 0) {
+	  MPI_Send(&send_rank, 1, MPI_INT, (rank + 1) % size, tag, MPI_COMM_WORLD);
+	  MPI_Recv(&rec_rank, 1, MPI_INT, (rank - 1 + size) % size, tag,
+			   MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+	} else {
+	  MPI_Recv(&rec_rank, 1, MPI_INT, (rank - 1 + size) % size, tag,
+			   MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+	  MPI_Send(&send_rank, 1, MPI_INT, (rank + 1) % size, tag, MPI_COMM_WORLD);
+	}
+	sum += rec_rank;
+	send_rank = rec_rank;
+}
+\end{lstlisting}

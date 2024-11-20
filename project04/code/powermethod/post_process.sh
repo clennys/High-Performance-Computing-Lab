@@ -1,7 +1,7 @@
 #!/bin/bash
 
 logfile="$1"
-output="powermethod.csv"
+output="powermethod_all_nodes.csv"
 
 if [[ ! -f "$logfile" ]]; then
     echo "Log file not found!"
