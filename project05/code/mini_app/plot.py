@@ -30,6 +30,7 @@ def read_bov_data(header):
     else:
         raise ValueError(f"Unknown data format: {header[3]}")
     data = np.fromfile(header[1], dtype=dtype)
+    print(data.size)
     data = data.reshape(header[2])
     return data
 

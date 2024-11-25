@@ -1,4 +1,5 @@
-CXX      = c++
+# CXX      = c++
+CXX      = mpic++
 CXXFLAGS = -O3
 
 SOURCES = walltime.cpp stats.cpp data.cpp operators.cpp linalg.cpp main.cpp

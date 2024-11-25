@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <cmath>
+#include<mpi.h>
 
 
 
@@ -31,21 +32,25 @@ void SubDomain::init(int mpi_rank, int mpi_size,
                      Discretization& discretization) {
     // TODO: determine the number of sub-domains in the x and y dimensions
     //       using MPI_Dims_create
-    int dims[2] = {1, 1};
+    int dims[2] = {0, 0};
+		MPI_Dims_create(mpi_size, 2, dims);
     ndomy = dims[0];
     ndomx = dims[1];
 
     // TODO: create a 2D non-periodic Cartesian topology using MPI_Cart_create
     int periods[2] = {0, 0};
+    MPI_Cart_create(MPI_COMM_WORLD, 2, dims, periods, 1, &comm_cart);
 
     // TODO: retrieve coordinates of the rank in the topology using
     // MPI_Cart_coords
     int coords[2] = {0, 0};
+    MPI_Cart_coords(comm_cart, mpi_rank, 2, coords);
     domy = coords[0] + 1;
     domx = coords[1] + 1;
 
     // TODO: set neighbours for all directions using MPI_Cart_shift
-
+		MPI_Cart_shift(comm_cart, 0, -1, &this->neighbour_north, &this->neighbour_south); // Vertical neighbors
+    MPI_Cart_shift(comm_cart, 1, 1, &this->neighbour_west, &this->neighbour_east);
     // get bounding box
     nx = discretization.nx / ndomx;
     ny = discretization.nx / ndomy;
