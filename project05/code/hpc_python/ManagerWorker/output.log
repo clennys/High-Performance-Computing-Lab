@@ -1,0 +1,330 @@
+MPI initialized with     2 processes
+Run took 25.156543 seconds
+Process     1 has done         50 tasks
+Done.
+MPI initialized with     2 processes
+Run took 25.563274 seconds
+Process     1 has done        100 tasks
+Done.
+MPI initialized with     3 processes
+Run took 13.498233 seconds
+Process     1 has done         25 tasks
+Process     2 has done         25 tasks
+Done.
+MPI initialized with     3 processes
+Run took 13.468992 seconds
+Process     1 has done         50 tasks
+Process     2 has done         50 tasks
+Done.
+MPI initialized with     4 processes
+Run took 9.806866 seconds
+Process     1 has done         16 tasks
+Process     2 has done         17 tasks
+Process     3 has done         17 tasks
+Done.
+MPI initialized with     4 processes
+Run took 9.581175 seconds
+Process     1 has done         33 tasks
+Process     2 has done         33 tasks
+Process     3 has done         34 tasks
+Done.
+MPI initialized with     5 processes
+Run took 7.807492 seconds
+Process     1 has done         12 tasks
+Process     2 has done         13 tasks
+Process     3 has done         12 tasks
+Process     4 has done         13 tasks
+Done.
+MPI initialized with     5 processes
+Run took 7.477987 seconds
+Process     1 has done         25 tasks
+Process     2 has done         25 tasks
+Process     3 has done         25 tasks
+Process     4 has done         25 tasks
+Done.
+MPI initialized with     6 processes
+Run took 6.385875 seconds
+Process     1 has done         10 tasks
+Process     2 has done         10 tasks
+Process     3 has done         10 tasks
+Process     4 has done         10 tasks
+Process     5 has done         10 tasks
+Done.
+MPI initialized with     6 processes
+Run took 6.268981 seconds
+Process     1 has done         20 tasks
+Process     2 has done         20 tasks
+Process     3 has done         20 tasks
+Process     4 has done         20 tasks
+Process     5 has done         20 tasks
+Done.
+MPI initialized with     7 processes
+Run took 5.790091 seconds
+Process     1 has done          9 tasks
+Process     2 has done          8 tasks
+Process     3 has done          8 tasks
+Process     4 has done          8 tasks
+Process     5 has done          9 tasks
+Process     6 has done          8 tasks
+Done.
+MPI initialized with     7 processes
+Run took 5.518638 seconds
+Process     1 has done         17 tasks
+Process     2 has done         17 tasks
+Process     3 has done         16 tasks
+Process     4 has done         17 tasks
+Process     5 has done         17 tasks
+Process     6 has done         16 tasks
+Done.
+MPI initialized with     8 processes
+Run took 5.239496 seconds
+Process     1 has done          7 tasks
+Process     2 has done          7 tasks
+Process     3 has done          8 tasks
+Process     4 has done          7 tasks
+Process     5 has done          7 tasks
+Process     6 has done          7 tasks
+Process     7 has done          7 tasks
+Done.
+MPI initialized with     8 processes
+Run took 5.009534 seconds
+Process     1 has done         14 tasks
+Process     2 has done         14 tasks
+Process     3 has done         15 tasks
+Process     4 has done         15 tasks
+Process     5 has done         14 tasks
+Process     6 has done         14 tasks
+Process     7 has done         14 tasks
+Done.
+MPI initialized with     9 processes
+Run took 4.722400 seconds
+Process     1 has done          6 tasks
+Process     2 has done          7 tasks
+Process     3 has done          6 tasks
+Process     4 has done          6 tasks
+Process     5 has done          6 tasks
+Process     6 has done          6 tasks
+Process     7 has done          6 tasks
+Process     8 has done          7 tasks
+Done.
+MPI initialized with     9 processes
+Run took 4.535109 seconds
+Process     1 has done         13 tasks
+Process     2 has done         13 tasks
+Process     3 has done         12 tasks
+Process     4 has done         13 tasks
+Process     5 has done         12 tasks
+Process     6 has done         12 tasks
+Process     7 has done         12 tasks
+Process     8 has done         13 tasks
+Done.
+MPI initialized with    10 processes
+Run took 4.400596 seconds
+Process     1 has done          5 tasks
+Process     2 has done          6 tasks
+Process     3 has done          6 tasks
+Process     4 has done          5 tasks
+Process     5 has done          5 tasks
+Process     6 has done          5 tasks
+Process     7 has done          6 tasks
+Process     8 has done          6 tasks
+Process     9 has done          6 tasks
+Done.
+MPI initialized with    10 processes
+Run took 4.255302 seconds
+Process     1 has done         11 tasks
+Process     2 has done         11 tasks
+Process     3 has done         12 tasks
+Process     4 has done         11 tasks
+Process     5 has done         11 tasks
+Process     6 has done         11 tasks
+Process     7 has done         11 tasks
+Process     8 has done         11 tasks
+Process     9 has done         11 tasks
+Done.
+MPI initialized with    11 processes
+Run took 4.011030 seconds
+Process     1 has done          5 tasks
+Process     2 has done          5 tasks
+Process     3 has done          5 tasks
+Process     4 has done          5 tasks
+Process     5 has done          5 tasks
+Process     6 has done          5 tasks
+Process     7 has done          5 tasks
+Process     8 has done          5 tasks
+Process     9 has done          5 tasks
+Process    10 has done          5 tasks
+Done.
+MPI initialized with    11 processes
+Run took 3.866396 seconds
+Process     1 has done         10 tasks
+Process     2 has done         10 tasks
+Process     3 has done         10 tasks
+Process     4 has done         10 tasks
+Process     5 has done         10 tasks
+Process     6 has done         10 tasks
+Process     7 has done         10 tasks
+Process     8 has done         10 tasks
+Process     9 has done         10 tasks
+Process    10 has done         10 tasks
+Done.
+MPI initialized with    12 processes
+Run took 3.927629 seconds
+Process     1 has done          5 tasks
+Process     2 has done          5 tasks
+Process     3 has done          5 tasks
+Process     4 has done          4 tasks
+Process     5 has done          4 tasks
+Process     6 has done          5 tasks
+Process     7 has done          4 tasks
+Process     8 has done          4 tasks
+Process     9 has done          5 tasks
+Process    10 has done          5 tasks
+Process    11 has done          4 tasks
+Done.
+MPI initialized with    12 processes
+Run took 3.795918 seconds
+Process     1 has done         10 tasks
+Process     2 has done          9 tasks
+Process     3 has done          9 tasks
+Process     4 has done          9 tasks
+Process     5 has done          9 tasks
+Process     6 has done          9 tasks
+Process     7 has done          9 tasks
+Process     8 has done          9 tasks
+Process     9 has done          9 tasks
+Process    10 has done          9 tasks
+Process    11 has done          9 tasks
+Done.
+MPI initialized with    13 processes
+Run took 3.836537 seconds
+Process     1 has done          4 tasks
+Process     2 has done          5 tasks
+Process     3 has done          4 tasks
+Process     4 has done          4 tasks
+Process     5 has done          4 tasks
+Process     6 has done          4 tasks
+Process     7 has done          4 tasks
+Process     8 has done          4 tasks
+Process     9 has done          5 tasks
+Process    10 has done          4 tasks
+Process    11 has done          4 tasks
+Process    12 has done          4 tasks
+Done.
+MPI initialized with    13 processes
+Run took 3.555465 seconds
+Process     1 has done          9 tasks
+Process     2 has done          9 tasks
+Process     3 has done          8 tasks
+Process     4 has done          8 tasks
+Process     5 has done          8 tasks
+Process     6 has done          8 tasks
+Process     7 has done          8 tasks
+Process     8 has done          8 tasks
+Process     9 has done          8 tasks
+Process    10 has done          8 tasks
+Process    11 has done          9 tasks
+Process    12 has done          9 tasks
+Done.
+MPI initialized with    14 processes
+Run took 3.426280 seconds
+Process     1 has done          4 tasks
+Process     2 has done          4 tasks
+Process     3 has done          4 tasks
+Process     4 has done          4 tasks
+Process     5 has done          4 tasks
+Process     6 has done          4 tasks
+Process     7 has done          3 tasks
+Process     8 has done          4 tasks
+Process     9 has done          4 tasks
+Process    10 has done          4 tasks
+Process    11 has done          3 tasks
+Process    12 has done          4 tasks
+Process    13 has done          4 tasks
+Done.
+MPI initialized with    14 processes
+Run took 3.361786 seconds
+Process     1 has done          8 tasks
+Process     2 has done          8 tasks
+Process     3 has done          8 tasks
+Process     4 has done          7 tasks
+Process     5 has done          8 tasks
+Process     6 has done          8 tasks
+Process     7 has done          8 tasks
+Process     8 has done          7 tasks
+Process     9 has done          7 tasks
+Process    10 has done          8 tasks
+Process    11 has done          7 tasks
+Process    12 has done          8 tasks
+Process    13 has done          8 tasks
+Done.
+MPI initialized with    15 processes
+Run took 3.393425 seconds
+Process     1 has done          3 tasks
+Process     2 has done          4 tasks
+Process     3 has done          3 tasks
+Process     4 has done          4 tasks
+Process     5 has done          4 tasks
+Process     6 has done          4 tasks
+Process     7 has done          4 tasks
+Process     8 has done          4 tasks
+Process     9 has done          3 tasks
+Process    10 has done          3 tasks
+Process    11 has done          3 tasks
+Process    12 has done          3 tasks
+Process    13 has done          4 tasks
+Process    14 has done          4 tasks
+Done.
+MPI initialized with    15 processes
+Run took 3.286611 seconds
+Process     1 has done          7 tasks
+Process     2 has done          7 tasks
+Process     3 has done          7 tasks
+Process     4 has done          8 tasks
+Process     5 has done          7 tasks
+Process     6 has done          7 tasks
+Process     7 has done          8 tasks
+Process     8 has done          7 tasks
+Process     9 has done          7 tasks
+Process    10 has done          7 tasks
+Process    11 has done          7 tasks
+Process    12 has done          7 tasks
+Process    13 has done          7 tasks
+Process    14 has done          7 tasks
+Done.
+MPI initialized with    16 processes
+Run took 3.344612 seconds
+Process     1 has done          3 tasks
+Process     2 has done          4 tasks
+Process     3 has done          3 tasks
+Process     4 has done          3 tasks
+Process     5 has done          3 tasks
+Process     6 has done          3 tasks
+Process     7 has done          3 tasks
+Process     8 has done          4 tasks
+Process     9 has done          3 tasks
+Process    10 has done          4 tasks
+Process    11 has done          3 tasks
+Process    12 has done          4 tasks
+Process    13 has done          4 tasks
+Process    14 has done          3 tasks
+Process    15 has done          3 tasks
+Done.
+MPI initialized with    16 processes
+Run took 3.126134 seconds
+Process     1 has done          7 tasks
+Process     2 has done          7 tasks
+Process     3 has done          6 tasks
+Process     4 has done          6 tasks
+Process     5 has done          6 tasks
+Process     6 has done          7 tasks
+Process     7 has done          7 tasks
+Process     8 has done          7 tasks
+Process     9 has done          7 tasks
+Process    10 has done          7 tasks
+Process    11 has done          7 tasks
+Process    12 has done          6 tasks
+Process    13 has done          6 tasks
+Process    14 has done          7 tasks
+Process    15 has done          7 tasks
+Done.

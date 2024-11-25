@@ -269,7 +269,7 @@ int main(int argc, char *argv[]) {
 
   // binary data
   // TODO: Implement write_binary using MPI-IO
-  write_binary("output.bin", y_old, domain, options);
+  //write_binary("output.bin", y_old, domain, options);
 
   // metadata
   // TODO: Only once process should do the following
