@@ -23,21 +23,18 @@ if size != 16:
 
 data = np.full((DOMAINSIZE * DOMAINSIZE), rank, dtype=np.float64)
 
-dims = [4, 4]
+dims = MPI.Compute_dims(size, 2)
 periods = [True, True]
 
 comm_cart = comm.Create_cart(dims, periods, False)
 coords = comm_cart.Get_coords(rank)
-print(f"Rank {rank} coords ({coords[0]}, {coords[1]})")
 
 rank_top, rank_bottom = comm_cart.Shift(0, 1)
 rank_left, rank_right = comm_cart.Shift(1, 1)
 
-top_right_rank = comm_cart.Get_cart_rank([coords[0] - 1, coords[1] + 1])
-top_left_rank = comm_cart.Get_cart_rank([coords[0] - 1, coords[1] - 1])
-bottom_right_rank = comm_cart.Get_cart_rank([coords[0] + 1, coords[1] + 1])
-bottom_left_rank = comm_cart.Get_cart_rank([coords[0] + 1, coords[1] - 1])
-
+print(
+    f"Rank {rank} with coords ({coords[0]}, {coords[1]}) -> Neighboring ranks: E={rank_right}, W={rank_left}, N={rank_top}, S={rank_bottom}"
+)
 
 T_col = MPI.DOUBLE.Create_vector(SUBDOMAIN, 1, DOMAINSIZE)
 T_col.Commit()
