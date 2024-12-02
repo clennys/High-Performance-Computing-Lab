@@ -13,10 +13,10 @@ function [part1,part2] = bisection_spectral(A,xy,picture)
 
 
 
-disp(' ');
-disp(' HPC Lab at USI:   ');
-disp(' Implement spectral bisection');
-disp(' ');
+% disp(' ');
+% disp(' HPC Lab at USI:   ');
+% disp(' Implement spectral bisection');
+% disp(' ');
 
 
 % Steps

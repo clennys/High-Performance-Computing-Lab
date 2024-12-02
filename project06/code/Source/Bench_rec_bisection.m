@@ -70,15 +70,18 @@ for c = 1:nc
     coords = params.coords;
     % 2. Recursive routines
     % i. Spectral
-    rec_bisection('bisection_spectral',7 ,W, coords, 0);
+    % rec_bisection('bisection_spectral', 8, W, coords, 0);
     % ii. Metis
-    % iii. Coordinate    
+      rec_bisection('bisection_metis', 8, W, coords, 0);
+    % iii. Coordinate
+      rec_bisection('bisection_coordinate', 8, W, coords, 0);
     % iv. Inertial
+      %rec_bisection('bisection_inertial', 8, W, coords, 0);
     % 3. Calculate number of cut edges
     % 4. Visualize the partitioning result
-    
-    
-    fprintf('%6d %6d %10d %6d %10d %6d %10d %6d\n',0,0,...
+     fprintf('%6d %6d %10d %6d %10d %6d %10d %6d\n',0,0,...
     0,0,0,0,0,0);
-    
 end
+   
+    
+

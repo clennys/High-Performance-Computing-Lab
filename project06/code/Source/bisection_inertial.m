@@ -14,10 +14,10 @@ function [part1,part2] = bisection_inertial(A,xy,picture)
 % bisection_inertial(A,xy,1) also draws a picture.
 
 
-disp(' ');
-disp(' HPC Lab at USI:   ');
-disp(' Implement inertial bisection');
-disp(' ');
+% disp(' ');
+% disp(' HPC Lab at USI:   ');
+% disp(' Implement inertial bisection');
+% disp(' ');
 
 
 % Steps
