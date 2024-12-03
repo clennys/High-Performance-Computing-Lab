@@ -90,17 +90,17 @@ for c = 1:nc
 
     % iv. Inertial
       [map_inert_8,~,~] = rec_bisection('bisection_inertial', 3, W, coords, 0);
-       edge_cut_inert_8 = cutsize(W, map_inert_8);
+       edge_cut_inert_8 = cutsize(W, map_coord_8);
 
       [map_inert_16,~,~] = rec_bisection('bisection_inertial', 4, W, coords, 0);
-       edge_cut_inert_16 = cutsize(W, map_inert_16);
+          edge_cut_inert_8 = cutsize(W, map_coord_8);
 
 
     % 3. Calculate number of cut edges
 
     % 4. Visualize the partitioning result
-     fprintf('%6d %6d %10d %6d %10d %6d %10d %6d\n',edge_cut_spec_8,edge_cut_spec_16,...
-    edge_cut_metis_8,edge_cut_metis_16,edge_cut_coord_8,edge_cut_coord_16,edge_cut_inert_8,edge_cut_inert_16);
+     fprintf('%6d %6d %10d %6d %10d %6d %10d %6d\n',edge_cut_spec_8,0,...
+    0,0,0,0,0,0);
 end
    
     

@@ -24,7 +24,8 @@ function [part1,part2] = bisection_spectral(A,xy,picture)
 D = diag(sum(A, 2));
 L = D - A;
 % 2. Calculate its eigensdecomposition.
-[eig_vec,~] = eigs(L,2,'smallestabs');
+%[eig_vec,~] = eigs(L,2,'smallestabs');
+[eig_vec,~] = eigs(L,2,1e-10);
 % 3. Label the vertices with the components of the Fiedler vector.
 fiedler_vec = eig_vec(:,2);
 % 4. Partition them around their median value, or 0.

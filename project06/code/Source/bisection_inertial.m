@@ -34,20 +34,20 @@ Syy = sum(y_shift.^2);
 Sxy = sum(x_shift.*y_shift);
 M = [Syy, Sxy; Sxy, Sxx];
 % 3. Calculate the smallest eigenvector of M.
-[eig_vec,~] = eigs(M,1,'smallestabs');
+[eig_vec,~] = eigs(M,1,1e-10);
 % 4. Find the line L on which the center of mass lies.
 eig_vec = eig_vec/norm(eig_vec);
 % 5. Partition the points around the line L.
 %   (you may use the function partition.m)
 
 % cross product 1d vector with distance to L
-cross_product = x_shift * eig_vec(2) - y_shift * eig_vec(1);
-
-n = size(A,1);
-map = zeros(n,1);
-map(0 <= cross_product) = 0;
-map(0 > cross_product) = 1;
-[part1, part2] = other(map);
+% cross_product = x_shift * eig_vec(2) - y_shift * eig_vec(1);
+% 
+% n = size(A,1);
+% map = zeros(n,1);
+% map(0 <= cross_product) = 0;
+% map(0 > cross_product) = 1;
+[part1, part2] = partition(xy, eig_vec);
 
 if picture == 1
     gplotpart(A,xy,part1);
