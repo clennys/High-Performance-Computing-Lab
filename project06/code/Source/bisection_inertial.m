@@ -42,11 +42,7 @@ eig_vec = eig_vec/norm(eig_vec);
 
 % cross product 1d vector with distance to L
 % cross_product = x_shift * eig_vec(2) - y_shift * eig_vec(1);
-% 
-% n = size(A,1);
-% map = zeros(n,1);
-% map(0 <= cross_product) = 0;
-% map(0 > cross_product) = 1;
+
 [part1, part2] = partition(xy, eig_vec);
 
 if picture == 1
@@ -54,20 +50,5 @@ if picture == 1
     title('Inertial bisection (actual) using the Fiedler Eigenvector');
 end
 
-% <<<< Dummy implementation to generate a partitioning
-%n   = size(A,1);
-%map = zeros(n,1);
-%map(1:round((n/2)))     = 0; 
-%map((round((n/2))+1):n) = 1;
-
-
-%[part1,part2] = other(map);
-
-%if picture == 1
-%    gplotpart(A,xy,part1);
- %   title('Inertial bisection (dummy) using the Fiedler Eigenvector');
-%end
-
-% Dummy implementation to generate a partitioning >>>>
 
 end

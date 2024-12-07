@@ -1,4 +1,4 @@
-function [part1,part2, eig_vec] = bisection_spectral(A,xy,picture)
+function [part1,part2, eig] = bisection_spectral(A,xy,picture)
 % bisection_spectral : Spectral partition of a graph.
 %
 % D.P & O.S for the "HPC Course" at USI and
@@ -25,7 +25,7 @@ D = diag(sum(A, 2));
 L = D - A;
 % 2. Calculate its eigensdecomposition.
 %[eig_vec,~] = eigs(L,2,'smallestabs');
-[eig_vec,~] = eigs(L,3,1e-10);
+[eig_vec,~] = eigs(L,2,1e-10);
 % 3. Label the vertices with the components of the Fiedler vector.
 fiedler_vec = eig_vec(:,2);
 % 4. Partition them around their median value, or 0.

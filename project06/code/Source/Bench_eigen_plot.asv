@@ -70,25 +70,26 @@ for i=1:num_graphs
 end
 pause;
 close all;
-for i=1:length(gs)
+figure;
+for i=1:22*length(gs)
     g = gs{i};
     load(g);
     W = Problem.A;
     xy = Problem.aux.coord;
+
     [part1, part2, eig_vec] = bisection_spectral(W, xy, 0);
     eig1 = eig_vec(:,2);
     eig2 = eig_vec(:,3);
     xy_v = [eig1, eig2];
-    figure;
-    subplot(2,1,1);
+    subplot(ceil(sqrt(num_graphs)), ceil(num_graphs / ceil(sqrt(num_graphs))), i);
     gplot_v(W,xy_v, part1);
-    subplot(2,1,2);
-    gplot_v(W,xy, part1);
+    subplot(ceil(sqrt(num_graphs)), ceil(num_graphs / ceil(sqrt(num_graphs))), i);
     title(gs{i}, 'Interpreter', 'none');
-    pause;
-    close all;
     
 end
+pause;
+close all;
+
 
 % load 3elt.mat;
 % load barth4.mat;
