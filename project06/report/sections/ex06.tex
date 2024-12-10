@@ -2,9 +2,19 @@
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{./media/eigenvector.png}
-	\caption{Eigen vectors associated with the first $\lambda_1$ and second $\lambda_2$ smallest eigen values of the graph Laplacian matrix $L$ for the graph "airfoil1."}
-	\label{fig:eig}
+	\begin{subfigure}{0.5\textwidth}
+		\includegraphics[width=\textwidth]{./media/eigenvector.png}
+		\caption{mesh3e1}
+		\label{fig:spec_crack}
+	\end{subfigure}%
+	~
+	\begin{subfigure}{0.5\textwidth}
+		\includegraphics[width=\textwidth]{./media/eig_2.png}
+		\caption{barth4}
+		\label{fig:coord_crack}
+	\end{subfigure}\\
+	\caption{Spectral bi-partitioning results using the eigenvectors to supply coordinates (bottom) and using cartesian coordinates (top).}
+	\label{fig:rec_bi}
 \end{figure}
 
 \begin{figure}[H]
@@ -21,7 +31,7 @@
 		\caption{mesh3e1}
 		\label{fig:spec_crack}
 	\end{subfigure}%
-    ~
+	~
 	\begin{subfigure}{0.5\textwidth}
 		\includegraphics[width=\textwidth]{./media/barth4_eigen.png}
 		\caption{barth4}
@@ -32,13 +42,13 @@
 		\caption{3elt}
 		\label{fig:metis_crack}
 	\end{subfigure}%
-    ~
+	~
 	\begin{subfigure}{0.5\textwidth}
 		\includegraphics[width=\textwidth]{./media/crack_eigen.png}
 		\caption{crack}
 		\label{fig:inert_crack}
 	\end{subfigure}
-	\caption{Spectral bi-partitioning results using the eigenvectors to supply coordinates (bottom) and using cartesian coordinates (top).}
+	\caption{Spectral bi-partitioning results using the eigenvectors to supply coordinates (top) and using cartesian coordinates (bottom).}
 	\label{fig:rec_bi}
 \end{figure}
 

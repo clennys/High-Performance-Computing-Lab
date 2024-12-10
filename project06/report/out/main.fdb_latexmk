@@ -1,11 +1,11 @@
 # Fdb version 4
-["biber out/main"] 1733625854.92491 "out/main.bcf" "out/main.bbl" "out/main" 1733829121.43236 0
-  "out/main.bcf" 1733829121.35831 107702 8770b4414c2fd7b67543ed95e8fbcd8a "pdflatex"
+["biber out/main"] 1733625854.92491 "out/main.bcf" "out/main.bbl" "out/main" 1733843272.62499 0
+  "out/main.bcf" 1733843272.55112 107702 8770b4414c2fd7b67543ed95e8fbcd8a "pdflatex"
   (generated)
   "out/main.bbl"
   "out/main.blg"
   (rewritten before read)
-["pdflatex"] 1733829118.95714 "main.tex" "out/main.pdf" "main" 1733829121.43258 0
+["pdflatex"] 1733843270.14253 "main.tex" "out/main.pdf" "main" 1733843272.62519 0
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -141,6 +141,7 @@
   "media/barth4_eigen.png" 1733829087.08989 212049 c9fcf2c124eb552074bc7e2436ad7336 ""
   "media/coord_crack.png" 1733744087.1266 243456 4bab60eb31d615793d8cba3243f2f31c ""
   "media/crack_eigen.png" 1733829107.41281 343323 36e2cebf00fd91d95ed702971c20cc4c ""
+  "media/eig_2.png" 1733843266.47563 139756 12cbc879099e52bf206cb0542d711483 ""
   "media/eigenvector.png" 1733826487.23699 523541 12a92673267c17945869ab47c498033e ""
   "media/fiedler.png" 1733828857.98855 282848 8377434f0e389a7287668bd6e415766b ""
   "media/inert_crack.png" 1733744106.97387 241826 cf6ef25a4560497b61db91a383a1dc20 ""
@@ -156,15 +157,15 @@
   "media/usa_metis_k.png" 1733749476.58742 105696 73dd0c3a852c6f5ea5d64e097503cd26 ""
   "media/usi_inf.png" 1733621983.46312 99334 1f4e71c330319964e6349d99194dd493 ""
   "media/vietnam.png" 1733624089.33228 140083 e3cf4a7e482203f410793ebe71e81681 ""
-  "out/main.aux" 1733829121.35668 10776 06871181e11730a50e455b2431f4f418 "pdflatex"
+  "out/main.aux" 1733843272.54931 10974 b3a7fb4120741800a7292fc7ad85a7ae "pdflatex"
   "out/main.bbl" 1733625856.75055 466 ee04f40f768daeed26442158e95aba61 "biber out/main"
-  "out/main.out" 1733829119.9275 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "out/main.run.xml" 1733829121.35912 2306 87dd811220b8e1af3128d0bbfbbcb909 "pdflatex"
+  "out/main.out" 1733843271.10535 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "out/main.run.xml" 1733843272.55182 2306 87dd811220b8e1af3128d0bbfbbcb909 "pdflatex"
   "sections/ex02.tex" 1733738864.65338 1401 d052d5cd40fe3e633d9314931c293b84 ""
-  "sections/ex03.tex" 1733741395.11789 4655 5808521185a9290a8e0e0222d8478ce2 ""
-  "sections/ex04.tex" 1733745929.25938 3012 f135468bdfd0e421f8ca3be129ba26dd ""
+  "sections/ex03.tex" 1733842356.43898 4655 a4e397903eff6dc95cd2719389442280 ""
+  "sections/ex04.tex" 1733842703.4048 3012 a0fac3ac0f7d0d0d4d6f3e962e3af026 ""
   "sections/ex05.tex" 1733750186.63083 2418 92f0514c5d09570b7913f48e06e14671 ""
-  "sections/ex06.tex" 1733828203.15582 1440 d5f54dd6f5c7acd2f49f65993b5bc21e ""
+  "sections/ex06.tex" 1733837292.32136 1661 e0a0a1fdab5452ce17be3b32126b6b11 ""
   "style/assignment.sty" 1733621983.45756 3185 0183a29473ef4f51b7a497f48369e279 ""
   (generated)
   "out/main.aux"

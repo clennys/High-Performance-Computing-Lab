@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.15)  10 DEC 2024 12:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.15)  10 DEC 2024 16:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -840,6 +840,21 @@ LaTeX Warning: Label `fig:coord_crack' multiply defined.
 LaTeX Warning: Label `sub@fig:coord_crack' multiply defined.
 
 
+LaTeX Warning: Label `fig:rec_bi' multiply defined.
+
+
+LaTeX Warning: Label `fig:spec_crack' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:spec_crack' multiply defined.
+
+
+LaTeX Warning: Label `fig:coord_crack' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:coord_crack' multiply defined.
+
+
 LaTeX Warning: Label `fig:metis_crack' multiply defined.
 
 
@@ -1067,43 +1082,54 @@ Overfull \hbox (4.86667pt too wide) in paragraph at lines 44--66
 <./media/eigenvector.png, id=127, 1718.42pt x 1997.4625pt>
 File: ./media/eigenvector.png Graphic file (type png)
 <use ./media/eigenvector.png>
-Package pdftex.def Info: ./media/eigenvector.png  used on input line 5.
-(pdftex.def)             Requested size: 469.47046pt x 545.69215pt.
- [5 <./media/usa_metis.png> <./media/usa_metis_k.png> <./media/lux_metis.png> <
-./media/lux_metis_k.png> <./media/ru_metis.png> <./media/ru_metis_k.png>]
-<./media/fiedler.png, id=140, 1672.2475pt x 1475.5125pt>
+Package pdftex.def Info: ./media/eigenvector.png  used on input line 6.
+(pdftex.def)             Requested size: 234.73523pt x 272.84607pt.
+<./media/eig_2.png, id=128, 1718.42pt x 1997.4625pt>
+File: ./media/eig_2.png Graphic file (type png)
+<use ./media/eig_2.png>
+Package pdftex.def Info: ./media/eig_2.png  used on input line 12.
+(pdftex.def)             Requested size: 234.73523pt x 272.84607pt.
+
+Overfull \hbox (4.86667pt too wide) in paragraph at lines 5--15
+ [][]  [] 
+ []
+
+[5 <./media/usa_metis.png> <./media/usa_metis_k.png> <./media/lux_metis.png> <.
+/media/lux_metis_k.png> <./media/ru_metis.png> <./media/ru_metis_k.png>]
+<./media/fiedler.png, id=141, 1672.2475pt x 1475.5125pt>
 File: ./media/fiedler.png Graphic file (type png)
 <use ./media/fiedler.png>
-Package pdftex.def Info: ./media/fiedler.png  used on input line 12.
+Package pdftex.def Info: ./media/fiedler.png  used on input line 22.
 (pdftex.def)             Requested size: 469.47046pt x 414.2439pt.
- [6 <./media/eigenvector.png (PNG copy)>]
+
+[6 <./media/eigenvector.png (PNG copy)> <./media/eig_2.png (PNG copy)>]
 <./media/mesh3e1_eigen.png, id=148, 1718.42pt x 1997.4625pt>
 File: ./media/mesh3e1_eigen.png Graphic file (type png)
 <use ./media/mesh3e1_eigen.png>
-Package pdftex.def Info: ./media/mesh3e1_eigen.png  used on input line 20.
+Package pdftex.def Info: ./media/mesh3e1_eigen.png  used on input line 30.
 (pdftex.def)             Requested size: 234.73523pt x 272.84607pt.
 <./media/barth4_eigen.png, id=149, 1718.42pt x 1997.4625pt>
 File: ./media/barth4_eigen.png Graphic file (type png)
 <use ./media/barth4_eigen.png>
-Package pdftex.def Info: ./media/barth4_eigen.png  used on input line 26.
+Package pdftex.def Info: ./media/barth4_eigen.png  used on input line 36.
 (pdftex.def)             Requested size: 234.73523pt x 272.84607pt.
 
-Overfull \hbox (4.86667pt too wide) in paragraph at lines 19--29
+Overfull \hbox (4.86667pt too wide) in paragraph at lines 29--39
  [][]  [] 
  []
 
 <./media/3elt_eigen.png, id=150, 1718.42pt x 1997.4625pt>
 File: ./media/3elt_eigen.png Graphic file (type png)
 <use ./media/3elt_eigen.png>
-Package pdftex.def Info: ./media/3elt_eigen.png  used on input line 31.
+Package pdftex.def Info: ./media/3elt_eigen.png  used on input line 41.
 (pdftex.def)             Requested size: 234.73523pt x 272.84607pt.
 <./media/crack_eigen.png, id=151, 1718.42pt x 1997.4625pt>
 File: ./media/crack_eigen.png Graphic file (type png)
 <use ./media/crack_eigen.png>
-Package pdftex.def Info: ./media/crack_eigen.png  used on input line 37.
+Package pdftex.def Info: ./media/crack_eigen.png  used on input line 47.
 (pdftex.def)             Requested size: 234.73523pt x 272.84607pt.
 
-Overfull \hbox (4.86667pt too wide) in paragraph at lines 30--41
+Overfull \hbox (4.86667pt too wide) in paragraph at lines 40--51
  [][]  [] 
  []
 
@@ -1132,10 +1158,10 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 24467 strings out of 474116
- 440763 string characters out of 5743682
+ 24473 strings out of 474116
+ 440921 string characters out of 5743682
  2173187 words of memory out of 5000000
- 46476 multiletter control sequences out of 15000+600000
+ 46482 multiletter control sequences out of 15000+600000
  564387 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,12n,107p,10899b,2006s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1151,10 +1177,10 @@ texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local
 /texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/
 texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/t
 exlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on out/main.pdf (8 pages, 2957290 bytes).
+Output written on out/main.pdf (8 pages, 3096744 bytes).
 PDF statistics:
- 249 PDF objects out of 1000 (max. 8388607)
+ 250 PDF objects out of 1000 (max. 8388607)
  183 compressed objects within 2 object streams
  83 named destinations out of 1000 (max. 500000)
- 136 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 141 words of extra memory for PDF output out of 10000 (max. 10000000)
 

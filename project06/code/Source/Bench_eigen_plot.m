@@ -20,10 +20,27 @@ eigvec2 = -eig_vec(:,2);
 % Visualize the entries of the eigenvectors
 figure;
 subplot(2, 1, 1);
-G = graph(air_W); % Replace 'adjacencyMatrix' with your actual adjacency matrix
+plot(1:length(eigvec1), eigvec1, '-o', 'LineWidth', 0.5, 'MarkerSize', 3);
+grid on;
+title('Entries of the Eigenvector v_1 (λ_1)');
+xlabel('Index');
+ylabel('Value');
+
+subplot(2, 1, 2);
+plot(1:length(eigvec2), eigvec2, '-s', 'LineWidth', 0.5, 'MarkerSize', 3);
+grid on;
+title('Entries of the Eigenvector v_2 (λ_2)');
+xlabel('Index');
+ylabel('Value');
+pause;
+close all;
+
+figure;
+subplot(2, 1, 1);
+G = graph(air_W); 
 gplot(air_W, air_coords, '-o');
 hold on;
-scatter(air_coords(:, 1), air_coords(:, 2), 30, eigvec1, 'filled'); % Overlay scatter
+scatter(air_coords(:, 1), air_coords(:, 2), 30, eigvec1, 'filled');
 colorbar;
 title('Eigenvector for \lambda_1');
 xlabel('x-coordinates');
