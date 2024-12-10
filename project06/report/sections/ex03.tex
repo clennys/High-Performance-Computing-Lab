@@ -1,0 +1,89 @@
+\section{Implement graph partitioning algorithms [25 points]}
+For this exercise the task was to Implement two different graph bisection algorithms. The first algorithm can be seen in Listing \ref{lst:spec} and is called Spectral bisection. The algorithm leverages the spectral properties of the Laplacian Matrix, which can be computed by $L = D-A$, where D is the degree matrix and A is the adjacency matrix. Subsequently, we use this Laplacian matrix to compute its eigen values and eigen vectors. In Matlab we can use the \texttt{eigs} function to that for sparse matrices. More precisely we are interested in the second smallest eigenvector, also commonly referred to as Fiedler vector. Using the median of the Fiedler vector we then assign the vertices to one of the partitions depending on if the corresponding entry in the fiedler vector is smaller or bigger than the median.
+\begin{lstlisting}[language=Matlab, caption=Spectral graph bisection implementation, label=lst:spec]
+function [part1,part2, eig_vec] = bisection_spectral(A,xy,picture)
+
+	% 1. Construct the Laplacian.
+	D = diag(sum(A, 2));
+	L = D - A;
+	% 2. Calculate its eigensdecomposition.
+	[eig_vec,~] = eigs(L,3,1e-10);
+	% 3. Label the vertices with the components of the Fiedler vector.
+	fiedler_vec = eig_vec(:,2);
+	% 4. Partition them around their median value, or 0.
+	fiedler_med = median(fiedler_vec);
+	n = size(A,1);
+	map = zeros(n,1);
+	map(fiedler_vec <= fiedler_med) = 0;
+	map(fiedler_vec > fiedler_med) = 1;
+	[part1, part2] = other(map);
+
+	if picture == 1
+		gplotpart(A,xy,part1);
+		title('Spectral bisection (actual) using the Fiedler Eigenvector');
+	end
+end
+\end{lstlisting}
+The second algorithm that we Implemented was inertial bisection \ref{lst:inert}, which leverages geometric properties to subdivide the graph into two subpartitions.
+Inertial bisection does this by computing the center mass in both $x$ and $y$. Then the matrix $M$ is constructed to reflect the distribution of points relative to the center of mass.
+This Matrix $M$ is then used to compute its own smallest normalized eigen vector, which represents the direction of minimum variance.
+This eigen vector is used to define a line that passes through the center of mass. This line is then used to partition the vertices into two disjointed groups.
+\begin{lstlisting}[language=Matlab, caption=Inertial graph bisection implementation, label=lst:inert]
+function [part1,part2] = bisection_inertial(A,xy,picture)
+	% Steps
+	% 1. Calculate the center of mass.
+	xy_mean = mean(xy, 1);
+	x_mean = xy_mean(1);
+	y_mean = xy_mean(2);
+
+	% 2. Construct the matrix M.
+	x_shift = xy(:,1) - x_mean;
+	y_shift = xy(:,2) - y_mean;
+	Sxx = sum(x_shift.^2);
+	Syy = sum(y_shift.^2);
+	Sxy = sum(x_shift.*y_shift);
+	M = [Syy, Sxy; Sxy, Sxx];
+	
+	% 3. Calculate the smallest eigenvector of M.
+	[eig_vec,~] = eigs(M,1,1e-10);
+
+	% 4. Find the line L on which the center of mass lies.
+	eig_vec = eig_vec/norm(eig_vec);
+
+	% 5. Partition the points around the line L.
+	[part1, part2] = partition(xy, eig_vec);
+
+	if picture == 1
+		gplotpart(A,xy,part1);
+		title('Inertial bisection (actual) using the Fiedler Eigenvector');
+	end
+end
+\end{lstlisting}
+As a final step we compare the newly implemented algorithms to the Coordinate bisection and Metis bisection methods using a variety of different mashes. The goal is to figure out, which algorithms creates the lowest number of edge-cuts to create the two partitions.
+The results in Table \ref{tab:meshdata} clearly show that there is not a clear algorithm that always creates the lowest number of edge-cuts and the choice of bisection algorithm has to be made on an individual problem basis.
+
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{lcccc}
+		\toprule
+		Mesh           & Coordinate & Metis 5.0.2 & Spectral & Inertial \\
+		\midrule
+		mesh1e1        & 18         & 18          & 18       & 20       \\
+		mesh2e1        & 37         & 34          & 36       & 47       \\
+		mesh3e1        & 19         & 20          & 18       & 19       \\
+		mesh3em5       & 19         & 20          & 24       & 19       \\
+		airfoil1       & 94         & 93          & 132      & 93       \\
+		netz4504\_dual & 25         & 19          & 23       & 27       \\
+		stufe          & 16         & 17          & 16       & 16       \\
+		3elt           & 172        & 96          & 117      & 257      \\
+		barth4         & 206        & 111         & 127      & 208      \\
+		ukerbe1        & 32         & 36          & 32       & 28       \\
+		crack          & 253        & 220         & 233      & 384      \\
+		\bottomrule
+	\end{tabular}
+	\caption{Bisection Results}
+	\label{tab:meshdata}
+\end{table}
+
+

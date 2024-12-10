@@ -102,6 +102,23 @@ for c = 1:nc
      fprintf('%6d %6d %10d %6d %10d %6d %10d %6d\n',edge_cut_spec_8,edge_cut_spec_16,...
     edge_cut_metis_8,edge_cut_metis_16,edge_cut_coord_8,edge_cut_coord_16,edge_cut_inert_8,edge_cut_inert_16);
 end
-   
+
+figure;
+gplotmap(W, coords, map_spec_16);
+title("Spectral")
+pause;
+figure;
+gplotmap(W, coords, map_metis_16);
+title("Metis")
+pause;
+figure
+gplotmap(W, coords, map_coord_16);
+title("Coordinate")
+pause;
+figure;
+gplotmap(W, coords, map_inert_16);
+title("Inertial")
+pause;
+close all;
     
 

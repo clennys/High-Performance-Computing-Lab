@@ -42,11 +42,8 @@ hold off;
 pause;
 close all;
 
-% Plot the graph
-% Plot the graph
-
 gs = {
-    'airfoil1.mat';
+    %'airfoil1.mat';
     '3elt.mat';
     'barth4.mat';
     'mesh3e1.mat';
@@ -82,6 +79,7 @@ for i=1:length(gs)
     figure;
     subplot(2,1,1);
     gplot_v(W,xy_v, part1);
+    title(gs{i}, 'Interpreter', 'none');
     subplot(2,1,2);
     gplot_v(W,xy, part1);
     title(gs{i}, 'Interpreter', 'none');

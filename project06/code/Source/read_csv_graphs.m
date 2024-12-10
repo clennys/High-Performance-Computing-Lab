@@ -20,8 +20,8 @@ for i = 1:length(countries)
     
     % 2. Construct the adjaceny matrix (NxN). There are multiple ways
     %    to do so.
-    from = M{:, 1}; % First column
-    to = M{:, 2};   % Second column
+    from = M{:, 1};
+    to = M{:, 2}; 
     
     % Determine the number of nodes
     nodes = max([from; to]);
@@ -63,3 +63,5 @@ coords_vn = coords;
 
 figure;
 gplotg(adj_vn,coords_vn);
+pause;
+close all;

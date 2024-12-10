@@ -14,11 +14,11 @@ cutxy = xy([part1; part2],:);
 
 % Plot edges for part1 in gray
 [edgeX, edgeY] = gplot(A(part1, part1), xy(part1, :));
-line(edgeX, edgeY, 'Color',  [0.5, 0.5, 0.5], 'LineWidth', 1);
+line(edgeX, edgeY, 'Color',  'black', 'LineWidth', 1);
 hold on;
 % Plot edges for part2 in light gray
 [edgeX, edgeY] = gplot(A(part2, part2), xy(part2, :));
-line(edgeX, edgeY, 'Color', [0.8, 0.8, 0.8] , 'LineWidth', 1); 
+line(edgeX, edgeY, 'Color', [0.7, 0.7, 0.7] , 'LineWidth', 1); 
 
 % Plot cut edges in black
 [edgeX, edgeY] = gplot(cut, cutxy);

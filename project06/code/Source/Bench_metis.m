@@ -64,11 +64,22 @@ gplotmap(adj_us,coords_us, part_recursive{1,2});
 pause;
 
 figure;
+gplotmap(adj_us,coords_us, part_kway{1,2});
+pause;
+close all;
+figure;
 gplotmap(adj_lux,coords_lux, part_recursive{2,2});
 pause;
 
 figure;
+gplotmap(adj_lux,coords_lux, part_kway{2,2});
+pause;
+close all;
+figure;
 gplotmap(adj_ru,coords_ru, part_recursive{4,2});
+pause;
+figure;
+gplotmap(adj_ru,coords_ru, part_kway{4,2});
 pause;
 close all;
 
