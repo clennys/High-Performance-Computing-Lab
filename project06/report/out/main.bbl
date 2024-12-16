@@ -16,5 +16,29 @@
   {}
 \endgroup
 
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{noauthor_smallest_nodate}{misc}{}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labeltitlesource}{title}
+      \field{title}{The {Smallest} {Eigenvalues} of a {Graph} {Laplacian}}
+      \field{urlday}{16}
+      \field{urlmonth}{12}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb The Smallest Eigenvalues of a Graph Laplacian:/Users/dennyshuber/Zotero/storage/EKSZZYVP/the-smallest-eigenvalues-of-a-graph-laplacian.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb http://blog.shriphani.com/2015/04/06/the-smallest-eigenvalues-of-a-graph-laplacian/
+      \endverb
+      \verb{url}
+      \verb http://blog.shriphani.com/2015/04/06/the-smallest-eigenvalues-of-a-graph-laplacian/
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
 \endinput
 

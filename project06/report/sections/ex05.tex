@@ -1,10 +1,11 @@
+\newpage
 \section{Comparing recursive bisection to direct k-way partitioning [10 points]}
-
+In this exercise the goal is to compare and analyze the performance of recursive bisection and direct k-way partitioning by looking at the edge cut result. Both methods are using Metis and the goal is to partition the graphs into 16 (Table~\ref{tab:partitions_rec}) and 32 (Table~\ref{tab:partitions_k_way}) partitions. Comparing the two methods we can clearly see that that direct k-way partitioning consistently outperforms the recursive bisection by creating a smaller edge cut. This is the case because recursive bisection has no global information when doing partitioning decisions, k-way on the other hand overcomes this limitation by coarsening the graph first and the then refining the partitioning. Knowing this coarsening and refinement steps it was anticipated that k-way partitioning would outperform recursive bisection. Another observation that can be made is that the difference in edge cut between the methods increases when comparing 16 to 32 partitions. Indicating that k-way multiway partitioning also scales better in terms of number of partitions.
 \begin{table}[H]
 	\centering
 	\begin{tabular}{lccccccc} % Note the number of columns matches the data
 		\toprule
-		Partitions & Luxemburg & usroads-48 & Greece & Switzerland & Vietnam & Norway & Russia \\
+		Partitions & Luxemburg & USRoads & Greece & Switzerland & Vietnam & Norway & Russia \\
 		\midrule
 		16         & 191       & 585        & 318    & 685         & 270     & 271    & 572    \\
 		32         & 317       & 983        & 500    & 1067        & 445     & 509    & 941    \\
@@ -18,7 +19,7 @@
 	\centering
 	\begin{tabular}{lccccccc} % Ensure this matches your data columns
 		\toprule
-		Partitions & Luxemburg & usroads-48 & Greece & Switzerland & Vietnam & Norway & Russia \\
+		Partitions & Luxemburg & USRoads & Greece & Switzerland & Vietnam & Norway & Russia \\
 		\midrule
 		16         & 185       & 545        & 301    & 665         & 231     & 241    & 551    \\
 		32         & 304       & 921        & 486    & 1013        & 418     & 436    & 931    \\
@@ -27,6 +28,7 @@
 	\caption{Cut edges for direct multiway partitioning in Metis 5.0.2.}
 	\label{tab:partitions_k_way}
 \end{table}
+Figure~\ref{fig:metis} showcases how various examples of graphs are partitioned differently when using recursive or k-way partitioning.
 
 \begin{figure}[H]
 	\centering

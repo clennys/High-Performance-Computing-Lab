@@ -1,11 +1,11 @@
 # Fdb version 4
-["biber out/main"] 1730739686.30833 "out/main.bcf" "out/main.bbl" "out/main" 1733583545.24676 0
-  "out/main.bcf" 1733583545.17727 107702 8770b4414c2fd7b67543ed95e8fbcd8a "pdflatex"
+["biber out/main"] 1730739686.30833 "out/main.bcf" "out/main.bbl" "out/main" 1733671274.82446 0
+  "out/main.bcf" 1733671274.74712 107702 8770b4414c2fd7b67543ed95e8fbcd8a "pdflatex"
   (generated)
   "out/main.bbl"
   "out/main.blg"
   (rewritten before read)
-["pdflatex"] 1733583543.61157 "main.tex" "out/main.pdf" "main" 1733583545.24698 0
+["pdflatex"] 1733671273.06044 "main.tex" "out/main.pdf" "main" 1733671274.82471 0
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm" 1136768653 1536 02c06700a42be0f5a28664c7273f82e7 ""
@@ -144,11 +144,11 @@
   "media/usi_inf.png" 1732579388.97875 99334 1f4e71c330319964e6349d99194dd493 ""
   "media/weak_scaling.png" 1732831429.1678 60693 0f0f80d9f0e624b00ea746704ea4c352 ""
   "media/weak_scaling_omp.png" 1732831380.73418 61584 7d1d13536d9c1b43043c3a9b2b04ddec ""
-  "out/main.aux" 1733583545.1751 6987 065568254d32b973fdedadce04d8c168 "pdflatex"
+  "out/main.aux" 1733671274.7449 6987 065568254d32b973fdedadce04d8c168 "pdflatex"
   "out/main.bbl" 1732579388.96409 466 ee04f40f768daeed26442158e95aba61 "biber out/main"
-  "out/main.out" 1733583544.60433 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "out/main.run.xml" 1733583545.1778 2306 87dd811220b8e1af3128d0bbfbbcb909 "pdflatex"
-  "sections/ex01.tex" 1733583543.49785 9260 b0a245bea2f737117ae1d34956cf4a9d ""
+  "out/main.out" 1733671274.14427 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "out/main.run.xml" 1733671274.7482 2306 87dd811220b8e1af3128d0bbfbbcb909 "pdflatex"
+  "sections/ex01.tex" 1733583573.2649 9260 b0a245bea2f737117ae1d34956cf4a9d ""
   "sections/ex02.tex" 1732991175.08372 4913 1ea9eb0dff9e6d75e1ca1bc91a05d63b ""
   "style/assignment.sty" 1732579388.97167 3185 0183a29473ef4f51b7a497f48369e279 ""
   (generated)
