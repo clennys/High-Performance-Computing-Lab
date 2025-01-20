@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber out/main"] 1734353229.96681 "out/main.bcf" "out/main.bbl" "out/main" 1734357330.20257 0
+["biber out/main"] 1734353229.96681 "out/main.bcf" "out/main.bbl" "out/main" 1734357395.0322 0
   "bib/sources.bib" 1734353229.0159 380 f209462a845baf5307f256c66e0dc850 ""
-  "out/main.bcf" 1734357330.12769 107781 c567b101180f6402e5f95c438688f81b "pdflatex"
+  "out/main.bcf" 1734357394.95777 107781 c567b101180f6402e5f95c438688f81b "pdflatex"
   (generated)
   "out/main.bbl"
   "out/main.blg"
   (rewritten before read)
-["pdflatex"] 1734357327.80293 "main.tex" "out/main.pdf" "main" 1734357330.20278 0
+["pdflatex"] 1734357392.60445 "main.tex" "out/main.pdf" "main" 1734357395.03241 0
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -163,10 +163,10 @@
   "media/usa_metis_k.png" 1733749476.58742 105696 73dd0c3a852c6f5ea5d64e097503cd26 ""
   "media/usi_inf.png" 1733621983.46312 99334 1f4e71c330319964e6349d99194dd493 ""
   "media/vietnam.png" 1733624089.33228 140083 e3cf4a7e482203f410793ebe71e81681 ""
-  "out/main.aux" 1734357330.12599 11871 1222dd335f8990920c2b755137ef0265 "pdflatex"
+  "out/main.aux" 1734357394.95586 11871 1222dd335f8990920c2b755137ef0265 "pdflatex"
   "out/main.bbl" 1734353231.78994 1380 c0f9f0f71a46cf1556923c05cc7f4c43 "biber out/main"
-  "out/main.out" 1734357328.70164 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "out/main.run.xml" 1734357330.12819 2306 87dd811220b8e1af3128d0bbfbbcb909 "pdflatex"
+  "out/main.out" 1734357393.54209 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "out/main.run.xml" 1734357394.95828 2306 87dd811220b8e1af3128d0bbfbbcb909 "pdflatex"
   "sections/ex02.tex" 1733738864.65338 1401 d052d5cd40fe3e633d9314931c293b84 ""
   "sections/ex03.tex" 1734348696.49603 4655 891c9fc10ed2be1ed2a4eb425945006f ""
   "sections/ex04.tex" 1734357327.6662 3156 1584831dd44c4be21a0376d8fef00799 ""
